@@ -1,5 +1,5 @@
 const bcrypt = require("bcrypt");
-const dbQueries = require("../db/queries");
+const dbQueries = require("../../server/db/queries");
 
 async function addNewUser(username, password) {
   try {

@@ -2,6 +2,10 @@
 const express = require("express");
 const path = require("node:path");
 require("dotenv").config();
+const cors = require("cors");
+const corsOptions = {
+  origin: ["http://localhost:5173"],
+};
 
 // AUTH IMPORTS
 const session = require("express-session");
@@ -15,7 +19,7 @@ const app = express();
 
 app.use(
   session({
-    secret: process.env.SECRET,
+    secret: process.env.SECRET || "secret",
     resave: false,
     saveUninitialized: false,
     cookie: {
@@ -25,6 +29,7 @@ app.use(
 );
 app.use(passport.session());
 app.use(express.urlencoded({ extended: false }));
+app.use(cors(corsOptions)); // Only accept requests from 5173
 
 // Serve static files from client/public
 app.use(express.static(path.join(__dirname, "..", "client", "public")));
@@ -36,6 +41,10 @@ app.set("view engine", "ejs");
 // ROUTERS
 app.get("/", (req, res) => {
   res.redirect("/sign-up");
+});
+
+app.get("/api", (req, res) => {
+  res.json({ apple: "apple" });
 });
 
 app.use("/log-in", loginRouter);
