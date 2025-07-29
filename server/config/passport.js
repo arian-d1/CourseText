@@ -8,14 +8,14 @@ const verifyCallback = async (username, password, done) => {
     const { rows } = await db.query("SELECT * FROM users WHERE username = $1", [
       username,
     ]);
+
     const user = rows[0];
-    console.log(user);
 
     if (!user) {
       return done(null, false, { message: "Incorrect username" });
     }
-    const pwCmpr = await bcrypt.compare(password, user.password);
 
+    const pwCmpr = await bcrypt.compare(password, user.password);
     if (!pwCmpr) {
       return done(null, false, { message: "Incorrect password" });
     }
