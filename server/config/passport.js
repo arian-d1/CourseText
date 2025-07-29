@@ -10,7 +10,7 @@ const verifyCallback = async (username, password, done) => {
     ]);
 
     const user = rows[0];
-
+    console.log(user);
     if (!user) {
       return done(null, false, { message: "Incorrect username" });
     }

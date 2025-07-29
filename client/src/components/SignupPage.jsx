@@ -1,10 +1,7 @@
-export default function SignUp() {
+export default function SignupPage() {
   return (
     <div>
-      <form
-        action="/sign-up"
-        method="POST"
-      >
+      <form action="http://localhost:3000/api/sign-up" method="POST">
         <h1>Sign Up</h1>
 
         <label htmlFor="username">Username:</label>

@@ -3,9 +3,6 @@ const express = require("express");
 const path = require("node:path");
 require("dotenv").config();
 const cors = require("cors");
-const corsOptions = {
-  origin: ["http://localhost:5173"],
-};
 
 // AUTH IMPORTS
 const session = require("express-session");
@@ -17,6 +14,13 @@ const signUpRouter = require("./routes/signUpRouter");
 
 const app = express();
 
+const corsOptions = {
+  origin: ["http://localhost:5173", "http://localhost:3000"],
+  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+  credentials: true,
+};
+app.use(cors(corsOptions));
+
 app.use(
   session({
     secret: process.env.SECRET || "secret",
@@ -27,9 +31,10 @@ app.use(
     },
   }),
 );
+
 app.use(passport.session());
-app.use(express.urlencoded({ extended: false }));
-app.use(cors(corsOptions)); // Only accept requests from 5173
+app.use(express.json()); // Add this before your routes
+app.use(express.urlencoded({ extended: true }));
 
 // Serve static files from client/public
 app.use(express.static(path.join(__dirname, "..", "client", "public")));
@@ -43,12 +48,8 @@ app.get("/", (req, res) => {
   res.redirect("/sign-up");
 });
 
-app.get("/api", (req, res) => {
-  res.json({ apple: "apple" });
-});
-
-app.use("/log-in", loginRouter);
-app.use("/sign-up", signUpRouter);
+app.use("/api/log-in", loginRouter);
+app.use("/api/sign-up", signUpRouter);
 
 const PORT = process.env.PORT || 3000;
 

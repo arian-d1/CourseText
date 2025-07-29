@@ -1,22 +1,27 @@
-import { useState, useEffect } from "react";
-import "./App.css";
-import axios from "axios";
 import SignUp from "./components/SignupPage";
+import Login from "./components/LoginPage";
+import { Routes, Route, Link } from "react-router-dom";
+import UserDashboard from "./components/UserDashboard";
+import { useState } from "react";
 
 function App() {
-  const [count, setCount] = useState(0);
-
-  const fetchAPI = async () => {
-    try {
-      const response = await axios.get("http://localhost:3000/api");
-      return response;
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
+  const [userAuthenticationState, setState] = useState(false);
+  const [username, setUsername] = useState("");
+    console.log(userAuthenticationState)
   return (
-    <SignUp/>
+    <Routes>
+      <Route path="/sign-up" element={<SignUp />} />
+      <Route
+        path="/log-in"
+        element={
+          userAuthenticationState ? (
+            <UserDashboard username={username} />
+          ) : (
+            <Login setState={setState} setUser={setUsername} />
+          )
+        }
+      />
+    </Routes>
   );
 }
 
