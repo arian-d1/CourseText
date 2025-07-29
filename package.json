@@ -4,7 +4,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "prettier --write . && node server/scripts/populateUsers.js && node server/app.js"
+    "dev": "prettier --write . && node server/scripts/populateUsers.js && node server/app.js --watch"
   },
   "repository": {
     "type": "git",
