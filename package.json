@@ -1,0 +1,31 @@
+{
+  "name": "coursetext",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "prettier --write . && node server/app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/arian-d1/CourseText.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/arian-d1/CourseText/issues"
+  },
+  "homepage": "https://github.com/arian-d1/CourseText#readme",
+  "description": "",
+  "devDependencies": {
+    "prettier": "^3.6.2"
+  },
+  "dependencies": {
+    "dotenv": "^17.2.1",
+    "ejs": "^3.1.10",
+    "express": "^5.1.0",
+    "express-validator": "^7.2.1",
+    "pg": "^8.16.3"
+  }
+}
