@@ -1,5 +1,16 @@
+const model = require("../models/signUpModel");
+
 function getSignUpPage(req, res) {
-  res.render("index");
+  res.render("signupForm");
 }
 
-module.exports = { getSignUpPage };
+async function putUser(req, res) {
+  try {
+    await model.addNewUser(req.body.username, req.body.password);
+    res.render("index");
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+module.exports = { getSignUpPage, putUser };
