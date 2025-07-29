@@ -26,6 +26,9 @@ app.use(
 app.use(passport.session());
 app.use(express.urlencoded({ extended: false }));
 
+// Serve static files from client/public
+app.use(express.static(path.join(__dirname, "..", "client", "public")));
+
 // View Engine EJS
 app.set("views", path.join(__dirname, "..", "client", "views"));
 app.set("view engine", "ejs");
