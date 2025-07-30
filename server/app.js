@@ -11,6 +11,7 @@ const passport = require("./config/passport");
 // ROUTER IMPORTS
 const loginRouter = require("./routes/loginRouter");
 const signUpRouter = require("./routes/signUpRouter");
+const listingsRouter = require("./routes/listingsRouter");
 
 const app = express();
 
@@ -43,6 +44,7 @@ app.get("/", (req, res) => {
 
 app.use("/api/log-in", loginRouter);
 app.use("/api/sign-up", signUpRouter);
+app.use("/api/listings", listingsRouter);
 
 const PORT = process.env.PORT || 3000;
 
