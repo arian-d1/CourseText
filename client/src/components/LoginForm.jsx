@@ -11,7 +11,6 @@ export default function LoginForm({ setState, setUser }) {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
-
   const handleSubmit = async (e) => {
     e.preventDefault(); // prevents the page from reloading on submit
     setError("");

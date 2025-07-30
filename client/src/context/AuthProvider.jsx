@@ -6,7 +6,6 @@ const AuthContext = createContext({});
 // children is everything that provider wraps
 export const AuthProvider = ({ children }) => {
   const [auth, setAuth] = useState(false);
-  
 
   // loads the authentication state stored in the browser
   useEffect(() => {
