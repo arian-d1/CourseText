@@ -1,8 +1,6 @@
 import SignUp from "./components/SignupForm";
 import Login from "./components/LoginForm";
 import { Routes, Route, Link } from "react-router-dom";
-import UserDashboard from "./components/UserDashboard";
-import { useState } from "react";
 import { AuthProvider } from "./context/AuthProvider";
 
 function App() {

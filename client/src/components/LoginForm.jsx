@@ -79,7 +79,7 @@ export default function LoginForm({ setState, setUser }) {
       <div className="sm:mx-auto sm:w-full sm:max-w-sm">
         <img></img>
         <h2 className="mt-10 text-center text-2xl/9 font-bold tracking-tight text-gray-900">
-          Sign in to your account
+          Log in to your account
         </h2>
       </div>
 
