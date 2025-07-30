@@ -4,10 +4,12 @@ import { Routes, Route, Link } from "react-router-dom";
 import { AuthProvider } from "./context/AuthProvider";
 import About from "./components/About";
 import Home from "./components/Home";
+import Header from "./components/Header";
 
 function App() {
   return (
     <AuthProvider>
+      <Header />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
