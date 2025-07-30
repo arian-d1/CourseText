@@ -29,4 +29,8 @@ async function authenticateUser(req, res, next) {
   })(req, res, next);
 }
 
-module.exports = { authenticateUser };
+function getAuthenticationState(req, res) {
+    return res.json({state : req.isAuthenticated()})
+}
+
+module.exports = { authenticateUser, getAuthenticationState };
