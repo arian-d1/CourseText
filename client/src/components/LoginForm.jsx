@@ -44,10 +44,10 @@ export default function LoginForm({ setState, setUser }) {
       console.log("Login response:", response.data);
 
       if (response.data.success) {
-        setAuth({state: true, username: username});
+        setAuth({ state: true, username: username });
       } else {
         setError(response.data.message || "Login failed");
-        setAuth({state: false, username: null});
+        setAuth({ state: false, username: null });
       }
     } catch (err) {
       console.log("Login error:", err.response.data);
@@ -70,7 +70,7 @@ export default function LoginForm({ setState, setUser }) {
   };
 
   return auth.state ? (
-    <UserDashboard username={auth.username}/>
+    <UserDashboard username={auth.username} />
   ) : (
     <div className="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-sm">
@@ -81,7 +81,9 @@ export default function LoginForm({ setState, setUser }) {
       </div>
 
       <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-        {error && <div className="text-sm/6 font-medium text-red-500">{error}</div>}
+        {error && (
+          <div className="text-sm/6 font-medium text-red-500">{error}</div>
+        )}
 
         <form onSubmit={handleSubmit} className="space-y-6">
           <div>

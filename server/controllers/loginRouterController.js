@@ -30,11 +30,14 @@ async function authenticateUser(req, res, next) {
 }
 
 function getAuthenticationState(req, res) {
-    if (req.isAuthenticated()) {
-        return res.json({state: req.isAuthenticated(), username: req.user.username})
-    } else {
-        return res.json({ state: req.isAuthenticated(), username: null });
-    }
+  if (req.isAuthenticated()) {
+    return res.json({
+      state: req.isAuthenticated(),
+      username: req.user.username,
+    });
+  } else {
+    return res.json({ state: req.isAuthenticated(), username: null });
+  }
 }
 
 module.exports = { authenticateUser, getAuthenticationState };
