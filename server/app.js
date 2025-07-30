@@ -15,7 +15,7 @@ const signUpRouter = require("./routes/signUpRouter");
 const app = express();
 
 const corsOptions = {
-  origin: ["http://localhost:5173", "http://localhost:3000"],
+  origin: ["http://localhost:5173"],
   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
   credentials: true,
 };
@@ -33,15 +33,8 @@ app.use(
 );
 
 app.use(passport.session());
-app.use(express.json()); // Add this before your routes
+app.use(express.json()); // will parse json in to req.body
 app.use(express.urlencoded({ extended: true }));
-
-// Serve static files from client/public
-app.use(express.static(path.join(__dirname, "..", "client", "public")));
-
-// View Engine EJS
-app.set("views", path.join(__dirname, "..", "client", "views"));
-app.set("view engine", "ejs");
 
 // ROUTERS
 app.get("/", (req, res) => {

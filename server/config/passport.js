@@ -12,13 +12,14 @@ const verifyCallback = async (username, password, done) => {
     const user = rows[0];
     console.log(user);
     if (!user) {
-      return done(null, false, { message: "Incorrect username" });
+      return done(null, false, { message: "Incorrect password" });
     }
 
     const pwCmpr = await bcrypt.compare(password, user.password);
     if (!pwCmpr) {
       return done(null, false, { message: "Incorrect password" });
     }
+
     return done(null, user);
   } catch (err) {
     return done(err);

@@ -1,24 +1,27 @@
-import React, { useState } from "react";
-import axios from "axios";
+import React, { useState, useContext } from "react";
+import authContext from "../context/AuthProvider";
+import axios from "../api/axios";
 import { useNavigate } from "react-router-dom";
+import UserDashboard from "./UserDashboard";
 
-export default function LoginPage({setState, setUser}) {
+export default function LoginForm({ setState, setUser }) {
+  const { auth, setAuth } = useContext(authContext);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
-  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+    e.preventDefault(); // prevents the page from reloading on submit
     setError("");
     setLoading(true);
 
     try {
       console.log("Attempting login with:", { username, password });
+      console.log(auth, setAuth);
 
       const response = await axios.post(
-        "http://localhost:3000/api/log-in",
+        "/log-in",
         { username, password },
         {
           withCredentials: true, // Required for session cookies
@@ -31,14 +34,13 @@ export default function LoginPage({setState, setUser}) {
       console.log("Login response:", response.data);
 
       if (response.data.success) {
-        setUser(username)
-        setState(true)
-        navigate("/log-in"); // Redirect to dashboard on success
+        setAuth(true);
       } else {
         setError(response.data.message || "Login failed");
+        setAuth(false);
       }
     } catch (err) {
-      console.error("Login error:", err);
+      console.log("Login error:", err.response.data);
 
       if (err.response) {
         // Server responded with error status
@@ -51,11 +53,15 @@ export default function LoginPage({setState, setUser}) {
         setError("Login failed. Please try again.");
       }
     } finally {
+      setUsername("");
+      setPassword("");
       setLoading(false);
     }
   };
 
-  return (
+  return auth ? (
+    <UserDashboard />
+  ) : (
     <div className="login-container">
       <h2>Login</h2>
       {error && <div className="error-message">{error}</div>}

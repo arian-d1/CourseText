@@ -11,7 +11,7 @@ async function addNewUser(username, password) {
       return true;
     }
   } catch (err) {
-    console.log(err);
+    return err;
   }
 }
 
