@@ -14,6 +14,15 @@ CREATE TABLE IF NOT EXISTS users (
    id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
    username TEXT,
    password TEXT
+);
+
+CREATE TABLE IF NOT EXISTS listings (
+    id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+   title TEXT,
+   description TEXT,
+   price NUMERIC(7, 2),
+   user_id INT,
+   FOREIGN KEY (user_id) REFERENCES users(id)
 );`;
 
 async function main() {
