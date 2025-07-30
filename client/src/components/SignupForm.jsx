@@ -2,6 +2,8 @@ import { useState } from "react";
 import axios from "../api/axios";
 
 export default function SignupForm() {
+  const TIMEOUT = 3;
+  const [cooldown, setCooldown] = useState(false);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -13,6 +15,17 @@ export default function SignupForm() {
     setLoading(true);
 
     try {
+      // Set pause
+      if (cooldown) {
+        setError(`Please wait ${TIMEOUT} more seconds`);
+        return;
+      } else {
+        setCooldown(true);
+      }
+      setTimeout(() => {
+        setCooldown(false);
+      }, TIMEOUT * 1000);
+
       console.log(`Attempting to create user: ${username}, ${password}`);
       const response = await axios.post(
         "/sign-up",
@@ -38,11 +51,11 @@ export default function SignupForm() {
   };
 
   return (
-    <div>
+    <div className="bg-sky-200">
       <h2>Sign Up</h2>
-      {error && <div className="error-message">{error}</div>}
+      {error && <div>{error}</div>}
       <form onSubmit={handleSubmit}>
-        <div className="form-group">
+        <div>
           <label htmlFor="username">Username:</label>
           <input
             id="username"
@@ -54,7 +67,7 @@ export default function SignupForm() {
           />
         </div>
 
-        <div className="form-group">
+        <div>
           <label htmlFor="password">Password:</label>
           <input
             id="password"
@@ -71,7 +84,7 @@ export default function SignupForm() {
         </button>
       </form>
 
-      <div className="signup-link">
+      <div>
         Already have an account? <a href="/log-in">Log in</a>
       </div>
     </div>
