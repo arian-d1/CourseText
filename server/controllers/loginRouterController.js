@@ -34,9 +34,14 @@ function getAuthenticationState(req, res) {
     return res.json({
       state: req.isAuthenticated(),
       username: req.user.username,
+      id: req.user.id,
     });
   } else {
-    return res.json({ state: req.isAuthenticated(), username: null });
+    return res.json({
+      state: req.isAuthenticated(),
+      username: null,
+      id: null,
+    });
   }
 }
 

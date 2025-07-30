@@ -44,10 +44,10 @@ export default function LoginForm({ setState, setUser }) {
       console.log("Login response:", response.data);
 
       if (response.data.success) {
-        setAuth({ state: true, username: username });
+        setAuth({ state: true, username: username, id: response.data.id });
       } else {
         setError(response.data.message || "Login failed");
-        setAuth({ state: false, username: null });
+        setAuth({ state: false, username: null, id: null });
       }
     } catch (err) {
       console.log("Login error:", err.response.data);
