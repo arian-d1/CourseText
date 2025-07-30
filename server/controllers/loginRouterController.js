@@ -2,7 +2,7 @@ const db = require("../db/queries");
 const passport = require("passport");
 
 async function authenticateUser(req, res, next) {
-  console.log("Login attempt received:", req.w);
+  console.log("Login attempt received:", req.body);
 
   passport.authenticate("local", (err, user, info) => {
     if (err) {
@@ -30,7 +30,11 @@ async function authenticateUser(req, res, next) {
 }
 
 function getAuthenticationState(req, res) {
-  return res.json({ state: req.isAuthenticated() });
+    if (req.isAuthenticated()) {
+        return res.json({state: req.isAuthenticated(), username: req.user.username})
+    } else {
+        return res.json({ state: req.isAuthenticated(), username: null });
+    }
 }
 
 module.exports = { authenticateUser, getAuthenticationState };

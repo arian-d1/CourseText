@@ -30,9 +30,6 @@ export default function LoginForm({ setState, setUser }) {
         setCooldown(false);
       }, TIMEOUT * 1000);
 
-      console.log("Attempting login with:", { username, password });
-      console.log(auth, setAuth);
-
       const response = await axios.post(
         "/log-in",
         { username, password },
@@ -47,10 +44,10 @@ export default function LoginForm({ setState, setUser }) {
       console.log("Login response:", response.data);
 
       if (response.data.success) {
-        setAuth(true);
+        setAuth({state: true, username: username});
       } else {
         setError(response.data.message || "Login failed");
-        setAuth(false);
+        setAuth({state: false, username: null});
       }
     } catch (err) {
       console.log("Login error:", err.response.data);
@@ -72,8 +69,8 @@ export default function LoginForm({ setState, setUser }) {
     }
   };
 
-  return auth ? (
-    <UserDashboard />
+  return auth.state ? (
+    <UserDashboard username={auth.username}/>
   ) : (
     <div className="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-sm">
@@ -84,7 +81,7 @@ export default function LoginForm({ setState, setUser }) {
       </div>
 
       <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-        {error && <div className="error-message">{error}</div>}
+        {error && <div className="text-sm/6 font-medium text-red-500">{error}</div>}
 
         <form onSubmit={handleSubmit} className="space-y-6">
           <div>
@@ -115,10 +112,10 @@ export default function LoginForm({ setState, setUser }) {
               >
                 Password:
               </label>
-              <div class="text-sm">
+              <div className="text-sm">
                 <a
                   href="#"
-                  class="font-semibold text-indigo-600 hover:text-indigo-500"
+                  className="font-semibold text-indigo-600 hover:text-indigo-500"
                 >
                   Forgot password?
                 </a>
