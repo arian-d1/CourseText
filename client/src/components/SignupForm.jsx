@@ -47,8 +47,8 @@ export default function SignupForm() {
       }
     } finally {
       setLoading(false);
-      setUsername("")
-      setPassword("")
+      setUsername("");
+      setPassword("");
     }
   };
 
@@ -62,7 +62,9 @@ export default function SignupForm() {
       </div>
 
       <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-        {error && <div className="text-sm/6 font-medium text-red-500">{error}</div>}
+        {error && (
+          <div className="text-sm/6 font-medium text-red-500">{error}</div>
+        )}
 
         <form onSubmit={handleSubmit} className="space-y-6">
           <div>
