@@ -5,6 +5,7 @@ import { AuthProvider } from "./context/AuthProvider";
 import About from "./components/About";
 import Home from "./components/Home";
 import Header from "./components/Header";
+import ListingSection from "./components/ListingSection";
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/listings" element={<ListingSection />} />
         <Route path="/about" element={<About />} />
         <Route path="/sign-up" element={<SignUp />} />
         <Route path="/log-in" element={<Login />} />

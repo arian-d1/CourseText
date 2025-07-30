@@ -11,7 +11,7 @@ export default function Header() {
       </div>
 
       <div className="flex-1 flex justify-center">
-        <HeaderButton url="/" imgName="library.svg" />
+        <HeaderButton url="/listings" imgName="library.svg" />
       </div>
       <div className="flex-1 flex justify-end">
         <HeaderButton url="/log-in" imgName="user.svg" />
