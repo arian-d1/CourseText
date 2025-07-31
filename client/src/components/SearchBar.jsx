@@ -1,6 +1,10 @@
 import { useState } from "react";
 
-export default function SearchBar({ setSearchTerm, searchTerm, setCourseCode}) {
+export default function SearchBar({
+  setSearchTerm,
+  searchTerm,
+  setCourseCode,
+}) {
   const TIMEOUT = 5;
   const [cooldown, setCooldown] = useState(false);
   const [error, setError] = useState("");
@@ -27,7 +31,7 @@ export default function SearchBar({ setSearchTerm, searchTerm, setCourseCode}) {
       console.error("Search error:", err);
       setError("Search failed. Please try again.");
     } finally {
-      setLoading(false); 
+      setLoading(false);
     }
   };
 
