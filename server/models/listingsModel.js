@@ -30,8 +30,19 @@ async function getListingsBySearchTerm(searchTerm) {
   }
 }
 
+async function getListingsById(id) {
+    try {
+        const response = await dbQueries.getListingsById(id);
+        return response;
+    } catch (err) {
+        console.error("Error fetching listing by ID:", err);
+        throw err;
+    }
+}
+
 module.exports = {
   getListings,
   getListingsByCourseCode,
   getListingsBySearchTerm,
+  getListingsById
 };

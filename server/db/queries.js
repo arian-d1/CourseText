@@ -45,6 +45,11 @@ async function getListingsBySearchTerm(searchTerm) {
   return result.rows;
 }
 
+async function getListingsById(id) {
+    const result = await db.query(`SELECT * FROM listings WHERE user_id = $1;`, [id]);
+    return result.rows
+}
+
 module.exports = {
   containsUser,
   insertUser,
@@ -52,4 +57,5 @@ module.exports = {
   getAllListings,
   getListingsByCourseCode,
   getListingsBySearchTerm,
+  getListingsById
 };
