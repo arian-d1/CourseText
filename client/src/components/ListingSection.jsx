@@ -59,7 +59,7 @@ export default function ListingSection() {
           searchTerm={searchTerm}
         />
       </div>
-      <div className="min-w-xs grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-4 w-full overflow-auto">
+      <div className="w-full grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-4 overflow-auto">
         {listingElements}
       </div>
     </div>
