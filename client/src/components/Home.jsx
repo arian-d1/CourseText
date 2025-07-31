@@ -1,5 +1,12 @@
-import Header from "./Header";
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function Home() {
-  return;
-}
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    // Redirect to the about page when the component mounts
+    navigate("/about");
+  }, [navigate]);
+
+  return }
