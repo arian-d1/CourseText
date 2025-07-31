@@ -4,6 +4,14 @@ const listingsRouterController = require("../controllers/listingsRouterControlle
 const listingsRouter = new Router();
 
 listingsRouter.get("/", listingsRouterController.getListings);
+listingsRouter.get(
+  "/search/term/:term",
+  listingsRouterController.getListingsBySearchTerm,
+);
+listingsRouter.get(
+  "/search/code/:code",
+  listingsRouterController.getListingsByCourseCode,
+);
 // listingsRouter.post("/", listingsRouterController.createListing);
 
 // listingsRouter.delete("/:id", listingsRouterController.deleteListing);

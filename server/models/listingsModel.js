@@ -10,4 +10,20 @@ async function getListings() {
   }
 }
 
-module.exports = { getListings };
+async function getListingsByCourseCode(courseCode) {
+  try {
+    const response = await dbQueries.getListingsByCourseCode(courseCode);
+    return response;
+  } catch (err) {
+    console.error("Error fetching listings by course code:", err);
+    throw err;
+  }
+}
+
+async function getListingsBySearchTerm(searchTerm) {}
+
+module.exports = {
+  getListings,
+  getListingsByCourseCode,
+  getListingsBySearchTerm,
+};

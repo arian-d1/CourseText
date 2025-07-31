@@ -30,4 +30,13 @@ async function getAllListings() {
   return result.rows;
 }
 
-module.exports = { containsUser, insertUser, getUserNameByID, getAllListings };
+async function getListingsByCourseCode(courseCode) {
+  const result = await db.query(
+    "SELECT * FROM listings WHERE code = $1",
+    [courseCode]
+  );
+  console.log(result.rows);
+  return result.rows;
+}
+
+module.exports = { containsUser, insertUser, getUserNameByID, getAllListings, getListingsByCourseCode };
