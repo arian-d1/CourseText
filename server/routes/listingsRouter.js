@@ -12,8 +12,8 @@ listingsRouter.get(
   "/search/code/:code",
   listingsRouterController.getListingsByCourseCode,
 );
-// listingsRouter.post("/", listingsRouterController.createListing);
 
+// listingsRouter.post("/", listingsRouterController.createListing);
 // listingsRouter.delete("/:id", listingsRouterController.deleteListing);
 // listingsRouter.put("/:id", listingsRouterController.updateListing);
 // listingsRouter.get("/:id", listingsRouterController.getListingById);

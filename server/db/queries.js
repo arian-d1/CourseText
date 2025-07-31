@@ -31,12 +31,26 @@ async function getAllListings() {
 }
 
 async function getListingsByCourseCode(courseCode) {
-  const result = await db.query(
-    "SELECT * FROM listings WHERE code = $1",
-    [courseCode]
-  );
+  const result = await db.query("SELECT * FROM listings WHERE code = $1", [
+    courseCode,
+  ]);
   console.log(result.rows);
   return result.rows;
 }
 
-module.exports = { containsUser, insertUser, getUserNameByID, getAllListings, getListingsByCourseCode };
+async function getListingsBySearchTerm(searchTerm) {
+  const result = await db.query(
+    "SELECT * FROM listings WHERE LOWER(title) LIKE LOWER($1) OR LOWER(code) LIKE LOWER($1)",
+    [`%${searchTerm}%`],
+  );
+  return result.rows;
+}
+
+module.exports = {
+  containsUser,
+  insertUser,
+  getUserNameByID,
+  getAllListings,
+  getListingsByCourseCode,
+  getListingsBySearchTerm,
+};

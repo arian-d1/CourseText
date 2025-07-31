@@ -20,7 +20,15 @@ async function getListingsByCourseCode(courseCode) {
   }
 }
 
-async function getListingsBySearchTerm(searchTerm) {}
+async function getListingsBySearchTerm(searchTerm) {
+  try {
+    const response = await dbQueries.getListingsBySearchTerm(searchTerm);
+    return response;
+  } catch (err) {
+    console.error("Error fetching listings by search term:", err);
+    throw err;
+  }
+}
 
 module.exports = {
   getListings,

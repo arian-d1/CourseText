@@ -22,7 +22,15 @@ async function getListingsByCourseCode(req, res) {
 }
 
 async function getListingsBySearchTerm(req, res) {
-  res.send(req.params);
+  try {
+    const searchTerm = req.params.term;
+    const response = await listingsModel.getListingsBySearchTerm(searchTerm);
+    res.json(response);
+  } catch (error) {
+    res.json({
+      error: error.message || "Error fetching listings by search term",
+    });
+  }
 }
 
 module.exports = {
