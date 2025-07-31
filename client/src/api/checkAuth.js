@@ -13,15 +13,18 @@ export async function checkAuth() {
 }
 
 export async function logOut() {
-    try {
-        const response = await axios.post("/users/logout", {}, {
-            withCredentials: true,
-        });
-        console.log(response.data);
-        return response.data;
-    } catch (error) {
-        console.error("logOut error", error);
-        return null;
-    }
+  try {
+    const response = await axios.post(
+      "/users/logout",
+      {},
+      {
+        withCredentials: true,
+      },
+    );
+    console.log(response.data);
+    return response.data;
+  } catch (error) {
+    console.error("logOut error", error);
+    return null;
+  }
 }
-

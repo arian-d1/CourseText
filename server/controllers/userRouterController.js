@@ -13,10 +13,23 @@ async function getUserById(req, res) {
 }
 
 async function logOut(req, res) {
-    req.logout(function(err) {
-        if (err) { return next(err); }
-        res.json({state : req.isAuthenticated()})
-      });
+  req.logout(function (err) {
+    if (err) {
+      return next(err);
+    }
+    res.json({ state: req.isAuthenticated() });
+  });
 }
 
-module.exports = { getUserById, logOut };
+async function getIdByUser(req, res) {
+  try {
+    const username = req.params.id;
+    const response = await userModel.getIdByUser(username);
+    res.json({ id: response });
+  } catch (err) {
+    res.json({
+      error: err.message || "Error fetching ID by username",
+    });
+  }
+}
+module.exports = { getUserById, logOut, getIdByUser };

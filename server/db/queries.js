@@ -46,10 +46,22 @@ async function getListingsBySearchTerm(searchTerm) {
 }
 
 async function getListingsById(id) {
-    const result = await db.query(`SELECT * FROM listings WHERE user_id = $1;`, [id]);
-    return result.rows
+  const result = await db.query(`SELECT * FROM listings WHERE user_id = $1;`, [
+    id,
+  ]);
+  return result.rows;
 }
 
+async function getIdByUser(id) {
+  const result = await db.query("SELECT id FROM users WHERE username = $1", [
+    id,
+  ]);
+  if (result.rows.length === 0) {
+    return "";
+  } else {
+    return result.rows[0].id;
+  }
+}
 module.exports = {
   containsUser,
   insertUser,
@@ -57,5 +69,6 @@ module.exports = {
   getAllListings,
   getListingsByCourseCode,
   getListingsBySearchTerm,
-  getListingsById
+  getListingsById,
+  getIdByUser,
 };

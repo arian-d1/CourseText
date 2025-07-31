@@ -10,4 +10,14 @@ async function getUserById(id) {
   }
 }
 
-module.exports = { getUserById };
+async function getIdByUser(username) {
+  try {
+    const response = await dbQueries.getIdByUser(username);
+    return response;
+  } catch (err) {
+    console.error("Error fetching ID by username:", err);
+    throw err;
+  }
+}
+
+module.exports = { getUserById, getIdByUser };

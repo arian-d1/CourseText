@@ -32,9 +32,18 @@ async function getUserNameByID(id) {
   }
 }
 
+async function getListingsById(id) {
+  try {
+    return await axios.get(`/listings/id/${id}`);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
 export {
   getAllListings,
   getListingsByCourseCode,
   getListingsBySearchTerm,
   getUserNameByID,
+  getListingsById,
 };

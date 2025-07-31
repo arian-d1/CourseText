@@ -1,10 +1,10 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useContext, useEffect, use } from "react";
 import authContext from "../context/AuthProvider";
 import axios from "../api/axios";
 import { useNavigate } from "react-router-dom";
 import UserDashboard from "./UserDashboard";
 
-export default function LoginForm({ setState, setUser }) {
+export default function LoginForm() {
   const TIMEOUT = 3;
   const [cooldown, setCooldown] = useState(false);
   const { auth, setAuth } = useContext(authContext);
@@ -44,11 +44,11 @@ export default function LoginForm({ setState, setUser }) {
 
       console.log("Login response:", response.data);
 
-      if (response.data.success) {
-        setAuth({ state: true, username: username, id: response.data.id });
+      if (response.data.success == true) {
+        setAuth({ state: true, username: username });
       } else {
         setError(response.data.message || "Login failed");
-        setAuth({ state: false, username: null, id: null });
+        setAuth({ state: false, username: null });
       }
     } catch (err) {
       console.log("Login error:", err.response.data);
@@ -71,7 +71,7 @@ export default function LoginForm({ setState, setUser }) {
   };
 
   return auth.state ? (
-    <UserDashboard username={auth.username} id={auth.id} />
+    <UserDashboard />
   ) : (
     <div className="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-sm">
