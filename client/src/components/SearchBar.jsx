@@ -36,12 +36,12 @@ export default function SearchBar({ setSearchTerm, searchTerm, setCourseCode}) {
       {error && <div className="">{error}</div>}
       <form
         onSubmit={handleSubmit}
-        className="flex px-4 py-3 rounded-md border-2 focus-within:border-blue-500 overflow-hidden mx-auto"
+        className="w-full flex px-4 py-3 rounded-md border-2 focus-within:border-blue-500 overflow-hidden mx-auto"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 192.904 192.904"
-          width="3rem"
+          width="1rem"
           className="fill-gray-600 mr-3 rotate-90"
         >
           <path
@@ -56,7 +56,7 @@ export default function SearchBar({ setSearchTerm, searchTerm, setCourseCode}) {
         </svg>
         <input
           type="text"
-          placeholder="Search by title or course code (e.g., CPSC-100)"
+          placeholder="Search by title or code (e.g., CPSC-100)"
           className="w-full outline-none bg-transparent text-gray-600 text-md"
           onChange={(e) => {
             setSearchTerm(e.target.value);

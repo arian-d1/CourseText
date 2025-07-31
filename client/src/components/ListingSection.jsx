@@ -49,7 +49,7 @@ export default function ListingSection() {
 
   return (
     <div className="flex h-screen">
-      <div className=" flex min-w-xs max-w-md bg-gray-200 p-4 shadow-md">
+      <div className=" flex w-md bg-gray-200 p-4 shadow-md">
         <Toolbar
           setCourseCode={setCourseCode}
           setSearchTerm={setSearchTerm}
