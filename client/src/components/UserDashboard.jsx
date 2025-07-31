@@ -1,7 +1,7 @@
 import { logOut } from "../api/checkAuth";
 import { useContext, useEffect, useState } from "react";
 import authContext from "../context/AuthProvider";
-import { getListingsById } from "../api/listings";
+import { getListingsById, deleteListing } from "../api/listings";
 import { getIdByUser } from "../api/users";
 import Listing from "./Listing";
 
@@ -23,6 +23,16 @@ export default function UserDashboard() {
     fetchListings();
   }, [auth]);
 
+  async function handleDelete(id) {
+    try {
+      await deleteListing(id);
+      setListings((prevListings) =>
+        prevListings.filter((listing) => listing.id !== id),
+      );
+    } catch (error) {
+      console.error("Error deleting listing:", error);
+    }
+  }
   const listingElements = listings.map((listing) => {
     return (
       <Listing
@@ -34,23 +44,11 @@ export default function UserDashboard() {
         created_at={listing.created_at}
         user_id={listing.user_id}
         canDelete={true}
-        listings={listings}
+        handleDelete={handleDelete}
         key={listing.id + listing.created_at}
       />
     );
   });
-
-  async function handleDelete(id) {
-    try {
-      // Assuming you have a delete API function
-      await deleteListing(id);
-      setListings((prevListings) =>
-        prevListings.filter((listing) => listing.id !== id),
-      );
-    } catch (error) {
-      console.error("Error deleting listing:", error);
-    }
-  }
 
   return (
     <div className="flex h-screen">

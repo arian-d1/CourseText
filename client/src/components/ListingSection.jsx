@@ -47,7 +47,6 @@ export default function ListingSection() {
         created_at={listing.created_at}
         user_id={listing.user_id}
         canDelete={false}
-        listings={listings}
         key={listing.id + listing.created_at}
       />
     );

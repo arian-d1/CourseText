@@ -40,10 +40,19 @@ async function getListingsById(id) {
   }
 }
 
+async function deleteListing(id) {
+  try {
+    return await axios.delete(`/listings/delete/${id}`);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
 export {
   getAllListings,
   getListingsByCourseCode,
   getListingsBySearchTerm,
   getUserNameByID,
   getListingsById,
+  deleteListing,
 };
