@@ -3,7 +3,7 @@ import CourseCodeDropdown from "./CourseCodeDropdown";
 
 export default function Toolbar({ setCourseCode, setSearchTerm, searchTerm }) {
   return (
-    <div className="w-full flex flex-col gap-4">
+    <div className="w-full flex flex-col gap-4 ">
       <SearchBar
         setSearchTerm={setSearchTerm}
         searchTerm={searchTerm}
