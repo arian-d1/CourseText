@@ -45,6 +45,7 @@ export default function ListingSection() {
         code={listing.code}
         created_at={listing.created_at}
         user_id={listing.user_id}
+        key={listing.id + listing.created_at}
       />
     );
   });
