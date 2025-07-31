@@ -62,6 +62,11 @@ async function getIdByUser(id) {
     return result.rows[0].id;
   }
 }
+
+async function deleteListing(id) {
+  await db.query("DELETE FROM listings WHERE id = $1", [id]);
+}
+
 module.exports = {
   containsUser,
   insertUser,
@@ -71,4 +76,5 @@ module.exports = {
   getListingsBySearchTerm,
   getListingsById,
   getIdByUser,
+  deleteListing,
 };

@@ -40,9 +40,19 @@ async function getListingsById(id) {
   }
 }
 
+async function deleteListing(id) {
+  try {
+    await dbQueries.deleteListing(id);
+  } catch (err) {
+    console.error("Error deleting listing:", err);
+    throw err;
+  }
+}
+
 module.exports = {
   getListings,
   getListingsByCourseCode,
   getListingsBySearchTerm,
   getListingsById,
+  deleteListing,
 };

@@ -2,12 +2,14 @@ import { useEffect, useState } from "react";
 import { getUserNameByID } from "../api/listings";
 
 export default function Listing({
+  id,
   title,
   description,
   price,
   code,
   created_at,
   user_id,
+  canDelete = false,
 }) {
   // User_id will be used to get the username
 

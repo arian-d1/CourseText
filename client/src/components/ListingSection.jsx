@@ -39,12 +39,15 @@ export default function ListingSection() {
   const listingElements = listings.map((listing) => {
     return (
       <Listing
+        id={listing.id}
         title={listing.title}
         description={listing.description}
         price={listing.price}
         code={listing.code}
         created_at={listing.created_at}
         user_id={listing.user_id}
+        canDelete={false}
+        listings={listings}
         key={listing.id + listing.created_at}
       />
     );

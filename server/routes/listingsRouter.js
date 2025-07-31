@@ -13,9 +13,9 @@ listingsRouter.get(
   listingsRouterController.getListingsByCourseCode,
 );
 listingsRouter.get("/id/:id", listingsRouterController.getListingsById);
+listingsRouter.delete("/delete/:id", listingsRouterController.deleteListing);
 
 // listingsRouter.post("/", listingsRouterController.createListing);
-// listingsRouter.delete("/:id", listingsRouterController.deleteListing);
 // listingsRouter.put("/:id", listingsRouterController.updateListing);
 // listingsRouter.get("/:id", listingsRouterController.getListingById);
 // listingsRouter.get("/user/:id", listingsRouterController.getListingsByUserId);

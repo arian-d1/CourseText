@@ -42,9 +42,21 @@ async function getListingsById(req, res) {
     res.json({ error: error.message || "Error fetching listing by ID" });
   }
 }
+
+async function deleteListing(req, res) {
+  try {
+    const id = req.params.id;
+    await listingsModel.deleteListing(id);
+    res.json({ message: "Listing deleted successfully" });
+  } catch (error) {
+    res.json({ error: error.message || "Error deleting listing" });
+  }
+}
+
 module.exports = {
   getListings,
   getListingsByCourseCode,
   getListingsBySearchTerm,
   getListingsById,
+  deleteListing,
 };
