@@ -24,4 +24,17 @@ async function getListingsBySearchTerm(searchTerm) {
   }
 }
 
-export { getAllListings, getListingsByCourseCode, getListingsBySearchTerm };
+async function getUserNameByID(id) {
+  try {
+    return await axios.get(`/users/${id}`);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+export {
+  getAllListings,
+  getListingsByCourseCode,
+  getListingsBySearchTerm,
+  getUserNameByID,
+};

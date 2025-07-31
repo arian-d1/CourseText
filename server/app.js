@@ -12,6 +12,7 @@ const passport = require("./config/passport");
 const loginRouter = require("./routes/loginRouter");
 const signUpRouter = require("./routes/signUpRouter");
 const listingsRouter = require("./routes/listingsRouter");
+const userRouter = require("./routes/userRouter");
 
 const app = express();
 
@@ -45,6 +46,7 @@ app.get("/", (req, res) => {
 app.use("/api/log-in", loginRouter);
 app.use("/api/sign-up", signUpRouter);
 app.use("/api/listings", listingsRouter);
+app.use("/api/users", userRouter);
 
 const PORT = process.env.PORT || 3000;
 
