@@ -36,7 +36,7 @@ export default function ListingSection() {
       <div className=" flex flex-col flex-1 min-w-2xs max-w-md h-screen bg-gray-200 p-4 shadow-md ">
         <Toolbar />
       </div>
-      <div className="flex-1 overflow-y-auto p-4">{listingElements}</div>
+      <div className="w-full overflow-y-auto p-4">{listingElements}</div>
     </div>
   );
 }

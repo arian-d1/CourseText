@@ -2,7 +2,7 @@ import SearchBar from "./SearchBar";
 
 export default function Toolbar() {
   return (
-    <div className="">
+    <div >
       <SearchBar />
     </div>
   );
