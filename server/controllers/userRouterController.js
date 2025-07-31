@@ -12,4 +12,11 @@ async function getUserById(req, res) {
   }
 }
 
-module.exports = { getUserById };
+async function logOut(req, res) {
+    req.logout(function(err) {
+        if (err) { return next(err); }
+        res.json({state : req.isAuthenticated()})
+      });
+}
+
+module.exports = { getUserById, logOut };

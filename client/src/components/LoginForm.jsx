@@ -28,6 +28,7 @@ export default function LoginForm({ setState, setUser }) {
       }
       setTimeout(() => {
         setCooldown(false);
+        setError("");
       }, TIMEOUT * 1000);
 
       const response = await axios.post(
@@ -70,7 +71,7 @@ export default function LoginForm({ setState, setUser }) {
   };
 
   return auth.state ? (
-    <UserDashboard username={auth.username} />
+    <UserDashboard username={auth.username} id={auth.id} />
   ) : (
     <div className="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-sm">
