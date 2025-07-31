@@ -1,6 +1,37 @@
+import { useState } from "react";
+
 export default function SearchBar() {
+   const TIMEOUT = 1;
+    const [cooldown, setCooldown] = useState(false);
+    const [error, setError] = useState("");
+    const [loading, setLoading] = useState(false);
+
+    const handleSubmit = async (e) => {
+      e.preventDefault(); // prevents the page from reloading on submit
+      setError("");
+      setLoading(true);
+
+      try {
+        // Set pause
+        if (cooldown) {
+          setError(`Please wait ${TIMEOUT} more seconds`);
+          return;
+        } else {
+          setCooldown(true);
+        }
+        setTimeout(() => {
+          setCooldown(false);
+        }, TIMEOUT * 1000);
+      } catch (err) {
+        console.error("Search error:", err);
+        setError("Search failed. Please try again.");
+      } finally {
+        setLoading(false);
+      }
+    };
+
   return (
-    <div className="flex px-4 py-3 rounded-md border-2 border-blue-500 overflow-hidden  mx-auto">
+    <form className="flex px-4 py-3 rounded-md border-2 focus-within:border-blue-500 overflow-hidden  mx-auto">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 192.904 192.904"
@@ -17,6 +48,6 @@ export default function SearchBar() {
       <button className=" bg-blue-500 text-white px-4 py-2 rounded-md ml-2 hover:bg-blue-600 transition-colors">
         Search
       </button>
-    </div>
+    </form>
   );
 }
