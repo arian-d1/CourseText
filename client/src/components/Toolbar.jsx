@@ -4,7 +4,7 @@ import CourseCodeDropdown from "./CourseCodeDropdown";
 export default function Toolbar({ setCourseCode, setSearchTerm, searchTerm }) {
   return (
     <div className="flex flex-col gap-4">
-      <SearchBar setSearchTerm={setSearchTerm} searchTerm={searchTerm} />
+      <SearchBar setSearchTerm={setSearchTerm} searchTerm={searchTerm} setCourseCode={setCourseCode}/>
       <CourseCodeDropdown
         courseCodes={["", "CS101", "CS102", "CS103"]}
         onSelect={(code) => {

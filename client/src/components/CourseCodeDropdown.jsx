@@ -1,7 +1,20 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import fs from "fs";
+import path from "path";
 
 export default function CourseCodeDropdown({ courseCodes, onSelect }) {
   const [selectedCode, setSelectedCode] = useState("");
+
+  // TODO
+  //   useEffect(() => {
+  //     function readCourseCodes() {
+  //         courseCodes = fs.readFileSync(path.join('..', 'api', 'courseCodes.txt'), 'utf8')
+  //         .split('\n')
+  //         .filter(code => code.trim() !== '');
+  //     }
+
+  //     readCourseCodes();
+  //     }, [])
 
   const handleSelect = (e) => {
     const code = e.target.value;

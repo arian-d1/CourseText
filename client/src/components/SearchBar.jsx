@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export default function SearchBar({ setSearchTerm, searchTerm }) {
+export default function SearchBar({ setSearchTerm, searchTerm, setCourseCode}) {
   const TIMEOUT = 5;
   const [cooldown, setCooldown] = useState(false);
   const [error, setError] = useState("");
@@ -10,6 +10,7 @@ export default function SearchBar({ setSearchTerm, searchTerm }) {
     e.preventDefault(); // prevents the page from reloading on submit
     setError("");
     setLoading(true);
+    setCourseCode("");
 
     try {
       // Set pause
@@ -26,7 +27,7 @@ export default function SearchBar({ setSearchTerm, searchTerm }) {
       console.error("Search error:", err);
       setError("Search failed. Please try again.");
     } finally {
-      setLoading(false);
+      setLoading(false); 
     }
   };
 
@@ -59,12 +60,11 @@ export default function SearchBar({ setSearchTerm, searchTerm }) {
           className="w-full outline-none bg-transparent text-gray-600 text-md"
           onChange={(e) => {
             setSearchTerm(e.target.value);
-            console.log(searchTerm);
           }}
         />
-        <button className=" bg-blue-500 text-white px-4 py-2 rounded-md ml-2 hover:bg-blue-600 transition-colors">
+        {/* <button className=" bg-blue-500 text-white px-4 py-2 rounded-md ml-2 hover:bg-blue-600 transition-colors">
           Search
-        </button>
+        </button> */}
       </form>
     </>
   );
