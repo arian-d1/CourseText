@@ -1,6 +1,6 @@
 import axios from "./axios";
 
-async function getListings() {
+async function getAllListings() {
   try {
     return await axios.get("/listings");
   } catch (error) {
@@ -8,4 +8,20 @@ async function getListings() {
   }
 }
 
-export { getListings };
+async function getListingsByCourseCode(courseCode) {
+  try {
+    return await axios.get(`/listings/code/${courseCode}`);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+async function getListingsBySearchTerm(searchTerm) {
+  try {
+    return await axios.get(`/listings/term/${searchTerm}`);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+export { getAllListings, getListingsByCourseCode, getListingsBySearchTerm };
