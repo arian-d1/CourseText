@@ -29,6 +29,8 @@ CREATE TABLE IF NOT EXISTS listings (
 INSERT INTO listings (title, description, price, user_id) VALUES ('title 1', 'desc 1', 1.25, 1) ON CONFLICT DO NOTHING;
 INSERT INTO listings (title, description, price, user_id) VALUES ('title 2', 'desc 2', 2.25, 1) ON CONFLICT DO NOTHING;
 INSERT INTO listings (title, description, price, user_id) VALUES ('title 3', 'desc 3', 3.25, 1) ON CONFLICT DO NOTHING;
+INSERT INTO listings (title, description, price, user_id) VALUES ('title 4', 'desc 4', 4.25, 1) ON CONFLICT DO NOTHING;
+INSERT INTO listings (title, description, price, user_id) VALUES ('title 5', 'desc 5', 5.25, 1) ON CONFLICT DO NOTHING;
 
 `;
 
