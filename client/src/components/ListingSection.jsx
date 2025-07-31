@@ -10,19 +10,19 @@ import Listing from "./Listing";
 
 export default function ListingSection() {
   const [listings, setListings] = useState([]);
-  const [currentSearch, setSearch] = useState("");
-  const [currentCourseCode, setCourseCode] = useState("");
+  const [searchTerm, setSearchTerm] = useState("");
+  const [courseCode, setCourseCode] = useState("");
 
   useEffect(() => {
     async function getListingsFromApi() {
       try {
-        if (currentCourseCode !== "") {
+        if (courseCode !== "") {
           // Get course by code
-          const response = await getListingsByCourseCode(currentCourseCode);
+          const response = await getListingsByCourseCode(courseCode);
           setListings(response.data);
-        } else if (currentSearch !== "") {
+        } else if (searchTerm !== "") {
           // Match by search
-          const response = await getListingsBySearchTerm(currentSearch);
+          const response = await getListingsBySearchTerm(searchTerm);
           setListings(response.data);
         } else {
           const response = await getAllListings();
@@ -34,7 +34,7 @@ export default function ListingSection() {
     }
 
     getListingsFromApi();
-  }, [currentSearch, currentCourseCode]); // When either of these change, re-fetch listings
+  }, [searchTerm, courseCode]); // When either of these change, re-fetch listings
 
   const listingElements = listings.map((listing) => {
     return (
@@ -50,7 +50,11 @@ export default function ListingSection() {
   return (
     <div className="flex h-screen">
       <div className=" flex min-w-xs max-w-md bg-gray-200 p-4 shadow-md">
-        <Toolbar setCourseCode={setCourseCode} setSearch={setSearch} />
+        <Toolbar
+          setCourseCode={setCourseCode}
+          setSearchTerm={setSearchTerm}
+          searchTerm={searchTerm}
+        />
       </div>
       <div className="grid grid-cols-2 auto-rows-fr gap-10 p-4 w-full">
         {listingElements}
