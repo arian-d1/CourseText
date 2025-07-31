@@ -19,9 +19,9 @@ export default function ListingSection() {
       }
     }
     if (currentCourseCode !== "") {
-      // Get course by code 
+      // Get course by code
     } else if (currentSearch !== "") {
-      // Match by search 
+      // Match by search
     } else {
       getListingsFromApi();
     }
