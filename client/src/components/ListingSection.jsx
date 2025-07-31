@@ -42,6 +42,8 @@ export default function ListingSection() {
         title={listing.title}
         description={listing.description}
         price={listing.price}
+        code={listing.code}
+        created_at={listing.created_at}
         user_id={listing.user_id}
       />
     );
