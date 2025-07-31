@@ -6,6 +6,8 @@ import Listing from "./Listing";
 
 export default function ListingSection() {
   const [listings, setListings] = useState([]);
+  const [currentSearch, setSearch] = useState("");
+  const [currentCourseCode, setCourseCode] = useState("");
 
   useEffect(() => {
     async function getListingsFromApi() {
@@ -16,8 +18,14 @@ export default function ListingSection() {
         console.log(err);
       }
     }
-    getListingsFromApi();
-  }, []);
+    if (currentCourseCode !== "") {
+      // Get course by code 
+    } else if (currentSearch !== "") {
+      // Match by search 
+    } else {
+      getListingsFromApi();
+    }
+  }, [currentSearch, currentCourseCode]); // When either of these change, re-fetch listings
 
   const listingElements = listings.map((listing) => {
     return (
@@ -29,14 +37,15 @@ export default function ListingSection() {
       />
     );
   });
+
   console.log(listingElements);
 
   return (
     <div className="flex h-screen">
-      <div className=" flex flex-col min-w-xs bg-gray-200 p-4 shadow-md">
+      <div className=" flex min-w-xs max-w-md bg-gray-200 p-4 shadow-md">
         <Toolbar />
       </div>
-      <div className=" p-4">
+      <div className="grid grid-cols-2 auto-rows-fr gap-10 p-4 w-full">
         {listingElements}
       </div>
     </div>
