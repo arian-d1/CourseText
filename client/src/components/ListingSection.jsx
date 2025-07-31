@@ -20,19 +20,20 @@ export default function ListingSection() {
   }, []);
 
   const listingElements = listings.map((listing) => {
-    return <Listing
-
-      title={listing.title}
-      description={listing.description}
-      price={listing.price}
-      user_id={listing.user_id}
-    />;
+    return (
+      <Listing
+        title={listing.title}
+        description={listing.description}
+        price={listing.price}
+        user_id={listing.user_id}
+      />
+    );
   });
-  console.log(listingElements)
+  console.log(listingElements);
 
   return (
-    <div className="">
-      <div className="flex flex-1 overflow-hidden">
+    <div className="container flex ">
+      <div className=" flex flex-col flex-1 min-w-2xs max-w-md h-screen bg-gray-200 p-4 shadow-md ">
         <Toolbar />
       </div>
       <div className="flex-1 overflow-y-auto p-4">{listingElements}</div>
