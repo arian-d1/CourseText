@@ -28,11 +28,11 @@ CREATE TABLE IF NOT EXISTS listings (
 );
 
 
-INSERT INTO listings (title, description, price, code, user_id) VALUES ('title 1', 'desc 1', 1.25, 'CPSC101', 1) ON CONFLICT DO NOTHING;
-INSERT INTO listings (title, description, price, code, user_id) VALUES ('title 2', 'desc 2', 2.25, 'CPSC201', 1) ON CONFLICT DO NOTHING;
-INSERT INTO listings (title, description, price, code, user_id) VALUES ('title 3', 'desc 3', 3.25, 'CPSC301', 1) ON CONFLICT DO NOTHING;
-INSERT INTO listings (title, description, price, code, user_id) VALUES ('title 4', 'desc 4', 4.25, 'CPSC401', 1) ON CONFLICT DO NOTHING;
-INSERT INTO listings (title, description, price, code, user_id) VALUES ('title 5', 'desc 5', 5.25, 'CPSC501', 1) ON CONFLICT DO NOTHING;
+INSERT INTO listings (title, description, price, code, user_id) VALUES ('Title 1', 'desc 1', 1.25, 'CPSC101', 1) ON CONFLICT DO NOTHING;
+INSERT INTO listings (title, description, price, code, user_id) VALUES ('Title 2', 'desc 2', 2.25, 'CPSC201', 1) ON CONFLICT DO NOTHING;
+INSERT INTO listings (title, description, price, code, user_id) VALUES ('Title 3', 'desc 3', 3.25, 'CPSC301', 1) ON CONFLICT DO NOTHING;
+INSERT INTO listings (title, description, price, code, user_id) VALUES ('Title 4', 'desc 4', 4.25, 'CPSC401', 1) ON CONFLICT DO NOTHING;
+INSERT INTO listings (title, description, price, code, user_id) VALUES ('Title 5', 'desc 5', 5.25, 'CPSC501', 1) ON CONFLICT DO NOTHING;
 
 `;
 
