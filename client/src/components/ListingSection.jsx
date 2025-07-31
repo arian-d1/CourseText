@@ -49,14 +49,14 @@ export default function ListingSection() {
 
   return (
     <div className="flex h-screen">
-      <div className=" flex w-md bg-gray-200 p-4 shadow-md">
+      <div className=" flex  w-md bg-gray-200 p-4 shadow-md">
         <Toolbar
           setCourseCode={setCourseCode}
           setSearchTerm={setSearchTerm}
           searchTerm={searchTerm}
         />
       </div>
-      <div className="grid grid-cols-2 auto-rows-fr gap-10 p-4 w-full">
+      <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-4 w-full">
         {listingElements}
       </div>
     </div>
