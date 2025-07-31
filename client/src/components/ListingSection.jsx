@@ -32,11 +32,13 @@ export default function ListingSection() {
   console.log(listingElements);
 
   return (
-    <div className="container flex ">
-      <div className=" flex flex-col flex-1 min-w-2xs max-w-md h-screen bg-gray-200 p-4 shadow-md ">
+    <div className="flex h-screen">
+      <div className=" flex flex-col min-w-xs bg-gray-200 p-4 shadow-md">
         <Toolbar />
       </div>
-      <div className="w-full overflow-y-auto p-4">{listingElements}</div>
+      <div className=" p-4">
+        {listingElements}
+      </div>
     </div>
   );
 }
