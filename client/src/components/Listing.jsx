@@ -29,7 +29,7 @@ export default function Listing({
   }, [user_id]);
 
   return (
-    <div className="w-full aspect-[4/5] sm:aspect-[1] md:aspect-[3/5] lg:aspect-[4/5] bg-white shadow-lg rounded-xl p-4 flex flex-col justify-between hover:shadow-xl transition">
+    <div className="w-full aspect-[4/5] sm:aspect-[5/6] md:aspect-[4/5] lg:aspect-[3/4] bg-white shadow-lg rounded-xl p-4 flex flex-col justify-between hover:shadow-xl transition">
       <div>
         <div>
           <h2 className="text-lg font-semibold mb-1 truncate">{title}</h2>
