@@ -55,7 +55,9 @@ export default function UserDashboard() {
   return (
     <div className="flex h-screen">
       <div className=" flex flex-col min-w-3xs bg-gray-200 p-4 shadow-md">
-        <p>Welcome, {auth.username}</p>
+        <p className="text-xl font-semibold text-gray-700 mb-4">
+          Welcome, <span className="text-blue-600">{auth.username}</span>
+        </p>
 
         <div className="mt-auto sticky bottom-4 flex flex-col">
           <button
