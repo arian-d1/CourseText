@@ -7,7 +7,9 @@ export default function Header() {
         <div className="flex max-h-max bg-black p-2 rounded-md ">
           <HeaderButton url="/" imgName="CourseText.svg" />
         </div>
-        <p className="text-2xl ">CourseText</p>
+        <p className="text-3xl font-semibold tracking-wide text-gray-800">
+          CourseText
+        </p>
       </div>
 
       <div className="flex-1 flex justify-center">
