@@ -1,4 +1,5 @@
 const listingsModel = require("../models/listingsModel");
+const { validationResult } = require("express-validator");
 
 async function getListings(req, res) {
   try {
@@ -23,6 +24,11 @@ async function getListingsByCourseCode(req, res) {
 
 async function getListingsBySearchTerm(req, res) {
   try {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    }
+    
     const searchTerm = req.params.term;
     const response = await listingsModel.getListingsBySearchTerm(searchTerm);
     res.json(response);
@@ -45,16 +51,29 @@ async function getListingsByUserId(req, res) {
 
 async function deleteListing(req, res) {
   try {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    }
+
     const id = req.params.id;
     await listingsModel.deleteListing(id);
     res.json({ success: true, message: "Listing deleted successfully" });
   } catch (error) {
-    res.json({ success: false, error: error.message || "Error deleting listing" });
+    res.json({
+      success: false,
+      error: error.message || "Error deleting listing",
+    });
   }
 }
 
 async function createListing(req, res) {
   try {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    }
+
     await listingsModel.createListing(req.body);
     res.json({ success: true, message: "Listing created successfully" });
   } catch (error) {

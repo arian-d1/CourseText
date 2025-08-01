@@ -2,7 +2,7 @@ const { Router } = require("express");
 const signUpRouterController = require("../../server/controllers/signUpRouterController");
 const signUpRouter = new Router();
 const { body } = require("express-validator");
-// Need to be sanitized and validated
+
 const validationRules = [
   body("username")
     .isAlphanumeric()
