@@ -68,7 +68,7 @@ export default function UserDashboard() {
         </button>
 
         <button
-          className="bg-sky-500 hover:bg-sky-500/75 rounded-md p-2 mt-4"
+          className="bg-blue-500 hover:bg-blue-500/75 rounded-md p-2 mt-4"
           onClick={(e) => {
             setCreateState(true);
           }}
@@ -77,7 +77,7 @@ export default function UserDashboard() {
         </button>
       </div>
       {createState ? (
-        <CreateListingPage createState={setCreateState} />
+        <CreateListingPage setCreateState={setCreateState} />
       ) : (
         <div className="flex flex-col w-full">
           <div className="w-full border-b border-gray-300 p-4 bg-white shadow-sm">
