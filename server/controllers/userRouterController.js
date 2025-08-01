@@ -7,7 +7,8 @@ async function getUserById(req, res) {
     res.json({ success: true, username: response });
   } catch (err) {
     res.json({
-      success: false, error: err.message || "Error fetching user by ID",
+      success: false,
+      error: err.message || "Error fetching user by ID",
     });
   }
 }
@@ -23,12 +24,13 @@ async function logOut(req, res) {
 
 async function getIdByUser(req, res) {
   try {
-    const username = req.params.id;
+    const username = req.params.user;
     const response = await userModel.getIdByUser(username);
     res.json({ success: true, id: response });
   } catch (err) {
     res.json({
-      success: false, error: err.message || "Error fetching ID by username",
+      success: false,
+      error: err.message || "Error fetching ID by username",
     });
   }
 }
