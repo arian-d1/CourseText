@@ -31,15 +31,15 @@ async function getAllListings() {
 }
 
 async function getListingsByCourseCode(courseCode) {
-  const result = await db.query("SELECT * FROM listings WHERE code = $1", [
-    courseCode,
+  const result = await db.query("SELECT * FROM listings WHERE code LIKE $1", [
+    `${courseCode}%`,
   ]);
   return result.rows;
 }
 
 async function getListingsBySearchTerm(searchTerm) {
   const result = await db.query(
-    "SELECT * FROM listings WHERE LOWER(title) LIKE LOWER($1) OR LOWER(code) LIKE LOWER($1)",
+    "SELECT * FROM listings WHERE LOWER(title) LIKE LOWER($1)",
     [`%${searchTerm}%`],
   );
   return result.rows;
