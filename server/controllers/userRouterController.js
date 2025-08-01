@@ -4,10 +4,10 @@ async function getUserById(req, res) {
   try {
     const id = req.params.id;
     const response = await userModel.getUserById(id);
-    res.json({ username: response });
+    res.json({ success: true, username: response });
   } catch (err) {
     res.json({
-      error: err.message || "Error fetching user by ID",
+      success: false, error: err.message || "Error fetching user by ID",
     });
   }
 }
@@ -17,7 +17,7 @@ async function logOut(req, res) {
     if (err) {
       return next(err);
     }
-    res.json({ state: req.isAuthenticated() });
+    res.json({ success: true, state: req.isAuthenticated() });
   });
 }
 
@@ -25,10 +25,10 @@ async function getIdByUser(req, res) {
   try {
     const username = req.params.id;
     const response = await userModel.getIdByUser(username);
-    res.json({ id: response });
+    res.json({ success: true, id: response });
   } catch (err) {
     res.json({
-      error: err.message || "Error fetching ID by username",
+      success: false, error: err.message || "Error fetching ID by username",
     });
   }
 }

@@ -47,9 +47,9 @@ async function deleteListing(req, res) {
   try {
     const id = req.params.id;
     await listingsModel.deleteListing(id);
-    res.json({ message: "Listing deleted successfully" });
+    res.json({ success: true, message: "Listing deleted successfully" });
   } catch (error) {
-    res.json({ error: error.message || "Error deleting listing" });
+    res.json({ success: false, error: error.message || "Error deleting listing" });
   }
 }
 

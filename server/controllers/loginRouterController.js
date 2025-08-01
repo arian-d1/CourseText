@@ -32,12 +32,14 @@ async function authenticateUser(req, res, next) {
 function getAuthenticationState(req, res) {
   if (req.isAuthenticated()) {
     return res.json({
+      success: true,
       state: req.isAuthenticated(),
       username: req.user.username,
       id: req.user.id,
     });
   } else {
     return res.json({
+      success: false,
       state: req.isAuthenticated(),
       username: null,
       id: null,
