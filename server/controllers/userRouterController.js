@@ -1,7 +1,13 @@
 const userModel = require("../models/userModel");
+const { validationResult } = require("express-validator");
 
 async function getUserById(req, res) {
   try {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    }
+
     const id = req.params.id;
     const response = await userModel.getUserById(id);
     res.json({ success: true, username: response });
@@ -24,6 +30,12 @@ async function logOut(req, res) {
 
 async function getIdByUser(req, res) {
   try {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    }
+
+    console.log("Errors:", errors);
     const username = req.params.user;
     const response = await userModel.getIdByUser(username);
     res.json({ success: true, id: response });
