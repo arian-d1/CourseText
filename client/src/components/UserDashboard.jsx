@@ -4,10 +4,12 @@ import authContext from "../context/AuthProvider";
 import { getListingsById, deleteListing } from "../api/listings";
 import { getIdByUser } from "../api/users";
 import Listing from "./Listing";
+import CreateListingPage from "./CreateListingPage";
 
 export default function UserDashboard() {
   const { auth, setAuth } = useContext(authContext);
   const [listings, setListings] = useState([]);
+  const [createState, setCreateState] = useState(false);
 
   useEffect(() => {
     async function fetchListings() {
@@ -56,7 +58,7 @@ export default function UserDashboard() {
         <p>Welcome, {auth.username}</p>
 
         <button
-          className="bg-amber-600 hover:bg-amber-700"
+          className="bg-amber-600 hover:bg-amber-700 rounded-md p-2 mt-4"
           onClick={(e) => {
             logOut();
             setAuth({ state: false, username: null });
@@ -64,15 +66,33 @@ export default function UserDashboard() {
         >
           Log Out
         </button>
+
+        <button
+          className="bg-sky-500 hover:bg-sky-500/75 rounded-md p-2 mt-4"
+          onClick={(e) => {
+            setCreateState(true);
+          }}
+        >
+          Create Listing
+        </button>
       </div>
-      <div className="flex flex-col w-full">
-        <div>
-          <p>Your Listings</p>
+      {createState ? (
+        <CreateListingPage createState={setCreateState} />
+      ) : (
+        <div className="flex flex-col w-full">
+          <div className="w-full border-b border-gray-300 p-4 bg-white shadow-sm">
+            <h2 className="text-2xl font-semibold text-gray-800">
+              Your Listings
+            </h2>
+            <p className="text-sm text-gray-500">
+              Manage and update your active listings below.
+            </p>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-4 overflow-auto">
+            {listingElements}
+          </div>
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-4 overflow-auto">
-          {listingElements}
-        </div>
-      </div>
+      )}
     </div>
   );
 }
