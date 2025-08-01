@@ -39,9 +39,12 @@ export default function SignupForm() {
       );
       console.log("Login response:", response);
     } catch (err) {
-      console.error("Login error:", err);
       if (err.status == 409) {
         setError(err.response.data.error || "Username already in use");
+      } else if (err.status == 400) {
+        setError(err.response.data.errors[0].msg || "Invalid input");
+      } else if (err.status == 500) {
+        setError(err.response.data.error || "Server error");
       } else {
         setError(err || "Invalid credentials");
       }
