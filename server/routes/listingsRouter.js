@@ -2,7 +2,6 @@ const { Router } = require("express");
 const listingsRouterController = require("../controllers/listingsRouterController.js");
 const listingsRouter = new Router();
 
-
 listingsRouter.get("/", listingsRouterController.getListings);
 listingsRouter.get(
   "/term/:term",

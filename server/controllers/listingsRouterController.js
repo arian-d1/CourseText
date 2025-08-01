@@ -56,12 +56,14 @@ async function deleteListing(req, res) {
 async function createListing(req, res) {
   try {
     await listingsModel.createListing(req.body);
-    res.json({success: true, message: "Listing created successfully"});
+    res.json({ success: true, message: "Listing created successfully" });
   } catch (error) {
-    res.json({ success: false, error: error.message || "Error creating listing" });
+    res.json({
+      success: false,
+      error: error.message || "Error creating listing",
+    });
   }
 }
-    
 
 module.exports = {
   getListings,
@@ -69,5 +71,5 @@ module.exports = {
   getListingsBySearchTerm,
   getListingsByUserId,
   deleteListing,
-  createListing
+  createListing,
 };

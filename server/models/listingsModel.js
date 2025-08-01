@@ -65,5 +65,5 @@ module.exports = {
   getListingsBySearchTerm,
   getListingsByUserId,
   deleteListing,
-  createListing
+  createListing,
 };

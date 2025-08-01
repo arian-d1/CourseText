@@ -85,5 +85,5 @@ module.exports = {
   getListingsByUserId,
   getIdByUser,
   deleteListing,
-  createListing
+  createListing,
 };
