@@ -5,20 +5,20 @@ const { check, body } = require("express-validator");
 
 const validationRules = [
   body("title")
+    .trim()
     .isAlphanumeric()
     .withMessage("Title must contain only alphanumeric characters")
-    .trim()
     .notEmpty(),
   body("description")
+    .trim()
     .isAlphanumeric()
     .withMessage("Description must contain only alphanumeric characters")
-    .trim()
     .notEmpty(),
   body("price").isNumeric().withMessage("Price must be a number").notEmpty(),
   body("code")
-    .isAlphanumeric()
-    .withMessage("Course code must contain only alphanumeric characters")
     .trim()
+    .matches(/^[A-Z]{2,4}\-[0-9]{3}$/)
+    .withMessage("Course code must be in the format of 'MATH-100'")
     .notEmpty(),
   body("user_id")
     .isAlphanumeric()
@@ -44,7 +44,7 @@ listingsRouter.get(
     check("code")
       .notEmpty()
       .isLength({ min: 6, max: 8 })
-      .withMessage('Course codes must be between 6 and 8 characters long')
+      .withMessage("Course codes must be between 6 and 8 characters long")
       .matches(/[A-Z]{2,4}\-[0-9]{3}/)
       .withMessage("Parameter must be a course code (e.g. MATH-100)"),
   ],

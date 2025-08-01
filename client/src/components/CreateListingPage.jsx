@@ -69,8 +69,13 @@ export default function CreateListingPage({ setCreateState }) {
       setPrice("");
       setCode("");
     } catch (error) {
-      setError("Failed to create listing. Please try again.");
-      return;
+      if (error.status == 400) {
+        setError(error.response.data.errors[0].msg || "Invalid input");
+      } else if (error.status == 500) {
+        setError(error.response.data.error || "Server error");
+      } else {
+        setError("Failed to create listing. Please try again.");
+      }
     }
   };
   return (

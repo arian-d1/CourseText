@@ -5,7 +5,7 @@ export default function SearchBar({
   setCourseCode,
   error,
   setError,
-  searchOption
+  searchOption,
 }) {
   const TIMEOUT = 5;
   const [cooldown, setCooldown] = useState(false);
@@ -60,13 +60,16 @@ export default function SearchBar({
         </svg>
         <input
           type="text"
-          placeholder={(searchOption == "code") ? "Search by course code (e.g MATH-100)" : "Search by title"}
+          placeholder={
+            searchOption == "code"
+              ? "Search by course code (e.g MATH-100)"
+              : "Search by title"
+          }
           className="w-full outline-none bg-transparent text-gray-600 text-md"
-        
           onChange={(e) => {
             if (searchOption == "code") {
-                setSearchTerm("");
-                setCourseCode(e.target.value);
+              setSearchTerm("");
+              setCourseCode(e.target.value);
             } else if (searchOption == "title") {
               setCourseCode("");
               setSearchTerm(e.target.value);
