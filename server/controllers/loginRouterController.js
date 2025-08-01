@@ -1,8 +1,12 @@
 const db = require("../db/queries");
 const passport = require("passport");
+const { validationResult } = require("express-validator");
 
 async function authenticateUser(req, res, next) {
-  console.log("Login attempt received:", req.body);
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(400).json({ errors: errors.array() });
+  }
 
   passport.authenticate("local", (err, user, info) => {
     if (err) {

@@ -51,18 +51,19 @@ export default function LoginForm() {
         setAuth({ state: false, username: null });
       }
     } catch (err) {
-      console.log("Login error:", err.response.data);
 
-      if (err.response) {
-        // Server responded with error status
-        setError(err.response.data?.error || "Invalid credentials");
-      } else if (err.request) {
-        // Request was made but no response
-        setError("No response from server. Is it running?");
+      if (err.status == 400 ) {
+        setError(err.response.data.errors[0].msg || "Invalid input");
+      } else if (err.status == 500) {
+        setError(err.response.data.error || "Server error");
+      } else if (err.status == 401) {
+        setError(err.response.data.error || "Invalid credentials");
       } else {
-        // Other errors
-        setError("Login failed. Please try again.");
+        setError(err || "Invalid credentials");
       }
+      setAuth({ state: false, username: null });
+
+
     } finally {
       setUsername("");
       setPassword("");
