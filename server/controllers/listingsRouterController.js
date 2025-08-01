@@ -56,8 +56,9 @@ async function deleteListing(req, res) {
 async function createListing(req, res) {
   try {
     await listingsModel.createListing(req.body);
+    res.json({success: true, message: "Listing created successfully"});
   } catch (error) {
-    res.json({ error: error.message || "Error creating listing" });
+    res.json({ success: false, error: error.message || "Error creating listing" });
   }
 }
     

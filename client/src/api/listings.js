@@ -50,7 +50,7 @@ async function deleteListing(id) {
 
 async function createListing(listingData) {
   try {
-    await axios.post("/listings", listingData);
+    return await axios.post("/listings", listingData);
   } catch (error) {
     console.error(error);
   }

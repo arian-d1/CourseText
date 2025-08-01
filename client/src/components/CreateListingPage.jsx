@@ -13,6 +13,11 @@ export default function CreateListingPage({ setCreateState }) {
   const [user_id, setUser_id] = useState(null);
 
   useEffect(() => {
+    setTitle("");
+    setDescription("");
+    setPrice("");
+    setCode("");
+    setError("");
     try {
       async function fetchUserId() {
         const id = await getIdByUser(auth.username);
@@ -49,16 +54,25 @@ export default function CreateListingPage({ setCreateState }) {
       return;
     }
 
-
-    await createListing({ title, description, price, code, user_id });
-
-    setTitle("");
-    setDescription("");
-    setPrice("");
-    setCode("");
-    setError("");
+    try {
+      const response = await createListing({
+        title,
+        description,
+        price,
+        code,
+        user_id,
+      });
+      setCreateState(false);
+      setError("");
+      setTitle("");
+      setDescription("");
+      setPrice("");
+      setCode("");
+    } catch (error) {
+      setError("Failed to create listing. Please try again.");
+      return;
+    }
   };
-
   return (
     <form onSubmit={handleSubmit} className="p-4 w-full">
       <h2 className="text-xl mb-4">Create Listing</h2>
