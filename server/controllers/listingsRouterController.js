@@ -12,6 +12,11 @@ async function getListings(req, res) {
 
 async function getListingsByCourseCode(req, res) {
   try {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    }
+
     const courseCode = req.params.code;
     const response = await listingsModel.getListingsByCourseCode(courseCode);
     res.json(response);

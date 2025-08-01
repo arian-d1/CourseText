@@ -33,13 +33,21 @@ listingsRouter.get(
     check("term")
       .notEmpty()
       .matches(/^[a-zA-Z0-9\-]+/)
-      .withMessage("Parameter must be alphanumeric or a course code"),
+      .withMessage("Parameter must be alphanumeric"),
   ],
   listingsRouterController.getListingsBySearchTerm,
 );
 // needs to be sanitized and validated maybe.....
 listingsRouter.get(
   "/code/:code",
+  [
+    check("code")
+      .notEmpty()
+      .isLength({ min: 6, max: 8 })
+      .withMessage('Course codes must be between 6 and 8 characters long')
+      .matches(/[A-Z]{2,4}\-[0-9]{3}/)
+      .withMessage("Parameter must be a course code (e.g. MATH-100)"),
+  ],
   listingsRouterController.getListingsByCourseCode,
 );
 listingsRouter.get("/id/:id", listingsRouterController.getListingsByUserId);
