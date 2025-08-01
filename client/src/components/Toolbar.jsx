@@ -4,7 +4,6 @@ import { useState } from "react";
 export default function Toolbar({
   setCourseCode,
   setSearchTerm,
-  searchTerm,
   error,
   setError,
 }) {
@@ -18,7 +17,6 @@ export default function Toolbar({
     <div className="w-full flex flex-col gap-4 ">
       <SearchBar
         setSearchTerm={setSearchTerm}
-        searchTerm={searchTerm}
         setCourseCode={setCourseCode}
         error={error}
         setError={setError}

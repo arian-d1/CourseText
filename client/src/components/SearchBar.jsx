@@ -2,10 +2,10 @@ import { useState } from "react";
 
 export default function SearchBar({
   setSearchTerm,
-  searchTerm,
   setCourseCode,
   error,
   setError,
+  searchOption
 }) {
   const TIMEOUT = 5;
   const [cooldown, setCooldown] = useState(false);
@@ -60,10 +60,17 @@ export default function SearchBar({
         </svg>
         <input
           type="text"
-          placeholder="Search by title or code (e.g., CPSC-100)"
+          placeholder={(searchOption == "code") ? "Search by course code (e.g MATH-100)" : "Search by title"}
           className="w-full outline-none bg-transparent text-gray-600 text-md"
+        
           onChange={(e) => {
-            setSearchTerm(e.target.value);
+            if (searchOption == "code") {
+                setSearchTerm("");
+                setCourseCode(e.target.value);
+            } else if (searchOption == "title") {
+              setCourseCode("");
+              setSearchTerm(e.target.value);
+            }
           }}
         />
         {/* <button className=" bg-blue-500 text-white px-4 py-2 rounded-md ml-2 hover:bg-blue-600 transition-colors">
