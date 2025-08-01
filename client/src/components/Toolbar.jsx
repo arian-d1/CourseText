@@ -22,29 +22,30 @@ export default function Toolbar({
         setError={setError}
         searchOption={searchOption}
       />
-      <div className="flex gap-4 w-full">
-        <form className="flex justify-between">
-          <div>
-            <input
-              type="radio"
-              name="searchOption"
-              defaultChecked
-              value="title"
-              onClick={handleSelect}
-            />
-            <label>Search by title</label>
-          </div>
-          <div>
-            <input
-              type="radio"
-              name="searchOption"
-              value="code"
-              onClick={handleSelect}
-            />
-            <label>Search by course code</label>
-          </div>
-        </form>
-      </div>
+      <form className="flex gap-6 px-2">
+        <label className="inline-flex items-center space-x-2 cursor-pointer">
+          <input
+            type="radio"
+            name="searchOption"
+            value="title"
+            defaultChecked
+            onClick={handleSelect}
+            className="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300"
+          />
+          <span className="text-sm text-gray-700">Search by title</span>
+        </label>
+
+        <label className="inline-flex items-center space-x-2 cursor-pointer">
+          <input
+            type="radio"
+            name="searchOption"
+            value="code"
+            onClick={handleSelect}
+            className="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300"
+          />
+          <span className="text-sm text-gray-700">Search by course code</span>
+        </label>
+      </form>
     </div>
   );
 }
