@@ -54,27 +54,29 @@ export default function UserDashboard() {
 
   return (
     <div className="flex h-screen">
-      <div className=" flex flex-col min-w-3xs bg-gray-200 p-4 shadow-md ">
+      <div className=" flex flex-col min-w-3xs bg-gray-200 p-4 shadow-md">
         <p>Welcome, {auth.username}</p>
 
-        <button
-          className="bg-amber-600 hover:bg-amber-700 rounded-md p-2 mt-4"
-          onClick={(e) => {
-            logOut();
-            setAuth({ state: false, username: null });
-          }}
-        >
-          Log Out
-        </button>
+        <div className="mt-auto sticky bottom-4 flex flex-col">
+          <button
+            className="bg-blue-500 hover:bg-blue-500/75 rounded-md p-2 mt-4"
+            onClick={(e) => {
+              setCreateState(true);
+            }}
+          >
+            Create Listing
+          </button>
 
-        <button
-          className="bg-blue-500 hover:bg-blue-500/75 rounded-md p-2 mt-4"
-          onClick={(e) => {
-            setCreateState(true);
-          }}
-        >
-          Create Listing
-        </button>
+          <button
+            className="bg-amber-600 hover:bg-amber-700 rounded-md p-2 mt-4"
+            onClick={(e) => {
+              logOut();
+              setAuth({ state: false, username: null });
+            }}
+          >
+            Log Out
+          </button>
+        </div>
       </div>
       {createState ? (
         <CreateListingPage setCreateState={setCreateState} />
