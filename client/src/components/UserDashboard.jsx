@@ -78,20 +78,24 @@ export default function UserDashboard() {
           </button>
         </div>
       </div>
-      {createState ? (
-        <CreateListingPage setCreateState={setCreateState} />
-      ) : (
-        <div className="flex flex-col w-full">
-          <div className="w-full border-b border-gray-300 p-4 bg-white shadow-sm">
-            <h2 className="text-2xl font-semibold text-gray-800">
-              Your Listings
-            </h2>
-            <p className="text-sm text-gray-500">
-              Manage and update your active listings below.
-            </p>
-          </div>
-          <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-4 overflow-auto">
-            {listingElements}
+
+      <div className="flex flex-col w-full">
+        <div className="w-full border-b border-gray-300 p-4 bg-white shadow-sm">
+          <h2 className="text-2xl font-semibold text-gray-800">
+            Your Listings
+          </h2>
+          <p className="text-sm text-gray-500">
+            Manage and update your active listings below.
+          </p>
+        </div>
+        <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-4 overflow-auto">
+          {listingElements}
+        </div>
+      </div>
+      {createState && (
+        <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 ">
+          <div className="bg-white rounded-xl shadow-xl p-6 max-w-xl w-full">
+            <CreateListingPage setCreateState={setCreateState} />
           </div>
         </div>
       )}

@@ -79,51 +79,83 @@ export default function CreateListingPage({ setCreateState }) {
     }
   };
   return (
-    <form onSubmit={handleSubmit} className="p-4 w-full">
-      <h2 className="text-xl mb-4">Create Listing</h2>
-      {error && <p className="text-red-500 mb-2">{error}</p>}
-      <input
-        type="text"
-        placeholder="Title"
-        value={title}
-        onChange={(e) => setTitle(e.target.value)}
-        className="mb-2 p-2 border rounded w-full"
-        required
-      />
-      <textarea
-        placeholder="Description"
-        value={description}
-        onChange={(e) => setDescription(e.target.value)}
-        className="mb-2 p-2 border rounded w-full"
-        required
-      />
-      <input
-        type="number"
-        placeholder="Price"
-        value={price}
-        onChange={(e) => setPrice(e.target.value)}
-        className="mb-2 p-2 border rounded w-full"
-        required
-      />
-      <input
-        type="text"
-        placeholder="Course Code"
-        value={code}
-        onChange={(e) => setCode(e.target.value)}
-        className="mb-4 p-2 border rounded w-full"
-        required
-      />
-      <div className="flex gap-2">
-        <button type="submit" className="bg-blue-500 p-2 mt-4 rounded-md">
-          Create Listing
-        </button>
+    <form
+      onSubmit={handleSubmit}
+      className="max-w-xl mx-auto bg-white shadow-lg rounded-2xl p-6 space-y-4 h-fit"
+    >
+      <h2 className="text-2xl font-semibold text-gray-800">Create a Listing</h2>
+
+      {error && <p className="text-red-600 text-sm">{error}</p>}
+
+      <div>
+        <label className="block text-sm font-medium text-gray-700 mb-1">
+          Title
+        </label>
+        <input
+          type="text"
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+          className="w-full rounded-lg border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          placeholder="Enter title"
+          required
+        />
+      </div>
+
+      <div>
+        <label className="block text-sm font-medium text-gray-700 mb-1">
+          Description
+        </label>
+        <textarea
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
+          className="w-full rounded-lg border border-gray-300 px-3 py-2 h-24 resize-none focus:outline-none focus:ring-2 focus:ring-blue-500"
+          placeholder="Enter description"
+          required
+        />
+      </div>
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-1">
+            Price
+          </label>
+          <input
+            type="number"
+            value={price}
+            onChange={(e) => setPrice(e.target.value)}
+            className="w-full rounded-lg border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            placeholder="e.g. 25"
+            required
+          />
+        </div>
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-1">
+            Course Code
+          </label>
+          <input
+            type="text"
+            value={code}
+            onChange={(e) => setCode(e.target.value)}
+            className="w-full rounded-lg border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            placeholder="e.g. CPSC 110"
+            required
+          />
+        </div>
+      </div>
+
+      <div className="flex justify-end gap-3 pt-4">
         <button
-          className="bg-amber-600 hover:bg-amber-700 rounded-md p-2 mt-4"
-          onClick={(e) => {
-            setCreateState(false);
-          }}
+          type="button"
+          onClick={() => setCreateState(false)}
+          className="px-4 py-2 rounded-lg text-sm font-medium bg-gray-100 hover:bg-gray-200 text-gray-700"
         >
           Cancel
+        </button>
+        <button
+          type="submit"
+          className="px-4 py-2 rounded-lg text-sm font-medium bg-blue-600 text-white hover:bg-blue-700"
+        >
+          Create Listing
         </button>
       </div>
     </form>
