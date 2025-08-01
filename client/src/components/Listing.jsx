@@ -22,7 +22,7 @@ export default function Listing({
         const response = await getUserNameByID(user_id);
         setUsername(response.data.username);
       } catch (error) {
-        console.error(error);
+        throw new Error("Failed to fetch username: " + error.message);
       }
     }
     getUserName();

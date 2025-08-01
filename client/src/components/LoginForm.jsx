@@ -51,8 +51,7 @@ export default function LoginForm() {
         setAuth({ state: false, username: null });
       }
     } catch (err) {
-
-      if (err.status == 400 ) {
+      if (err.status == 400) {
         setError(err.response.data.errors[0].msg || "Invalid input");
       } else if (err.status == 500) {
         setError(err.response.data.error || "Server error");
@@ -62,8 +61,6 @@ export default function LoginForm() {
         setError(err || "Invalid credentials");
       }
       setAuth({ state: false, username: null });
-
-
     } finally {
       setUsername("");
       setPassword("");

@@ -4,10 +4,11 @@ export default function SearchBar({
   setSearchTerm,
   searchTerm,
   setCourseCode,
+  error,
+  setError,
 }) {
   const TIMEOUT = 5;
   const [cooldown, setCooldown] = useState(false);
-  const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e) => {
@@ -28,8 +29,7 @@ export default function SearchBar({
         setCooldown(false);
       }, TIMEOUT * 1000);
     } catch (err) {
-      console.error("Search error:", err);
-      setError("Search failed. Please try again.");
+      console.error("Error setting cooldown:", err);
     } finally {
       setLoading(false);
     }
@@ -37,7 +37,7 @@ export default function SearchBar({
 
   return (
     <>
-      {error && <div className="">{error}</div>}
+      {error && <div className="text-md text-amber-700">{error}</div>}
       <form
         onSubmit={handleSubmit}
         className="w-full flex px-4 py-3 rounded-md border-2 focus-within:border-blue-500 overflow-hidden mx-auto"

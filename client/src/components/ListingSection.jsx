@@ -12,6 +12,7 @@ export default function ListingSection() {
   const [listings, setListings] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [courseCode, setCourseCode] = useState("");
+  const [error, setError] = useState("");
 
   useEffect(() => {
     async function getListingsFromApi() {
@@ -28,8 +29,15 @@ export default function ListingSection() {
           const response = await getAllListings();
           setListings(response.data);
         }
+        setError("");
       } catch (err) {
-        console.log(err);
+        if ((err.status = 400)) {
+          setError(err.response.data.errors[0].msg || "Invalid input");
+        } else if ((err.status = 500)) {
+          setError(err.response.data.error || "Server error");
+        } else {
+          setError("Search failed. Please try again.");
+        }
       }
     }
 
@@ -59,6 +67,8 @@ export default function ListingSection() {
           setCourseCode={setCourseCode}
           setSearchTerm={setSearchTerm}
           searchTerm={searchTerm}
+          error={error}
+          setError={setError}
         />
       </div>
       <div className="w-full grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-4 overflow-auto">
