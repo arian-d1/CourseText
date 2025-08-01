@@ -30,9 +30,9 @@ async function getListingsBySearchTerm(searchTerm) {
   }
 }
 
-async function getListingsById(id) {
+async function getListingsByUserId(id) {
   try {
-    const response = await dbQueries.getListingsById(id);
+    const response = await dbQueries.getListingsByUserId(id);
     return response;
   } catch (err) {
     console.error("Error fetching listing by ID:", err);
@@ -49,10 +49,21 @@ async function deleteListing(id) {
   }
 }
 
+async function createListing(listingData) {
+  try {
+    const { title, description, price, code, user_id } = listingData;
+    await dbQueries.createListing(title, description, price, code, user_id);
+  } catch (err) {
+    console.error("Error creating listing:", err);
+    throw err;
+  }
+}
+
 module.exports = {
   getListings,
   getListingsByCourseCode,
   getListingsBySearchTerm,
-  getListingsById,
+  getListingsByUserId,
   deleteListing,
+  createListing
 };

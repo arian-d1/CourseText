@@ -45,7 +45,7 @@ async function getListingsBySearchTerm(searchTerm) {
   return result.rows;
 }
 
-async function getListingsById(id) {
+async function getListingsByUserId(id) {
   const result = await db.query(`SELECT * FROM listings WHERE user_id = $1;`, [
     id,
   ]);
@@ -67,6 +67,14 @@ async function deleteListing(id) {
   await db.query("DELETE FROM listings WHERE id = $1", [id]);
 }
 
+async function createListing(title, description, price, code, user_id) {
+  await db.query(
+    `INSERT INTO listings (title, description, price, code, user_id) 
+     VALUES ($1, $2, $3, $4, $5);`,
+    [title, description, price, code, user_id],
+  );
+}
+
 module.exports = {
   containsUser,
   insertUser,
@@ -74,7 +82,8 @@ module.exports = {
   getAllListings,
   getListingsByCourseCode,
   getListingsBySearchTerm,
-  getListingsById,
+  getListingsByUserId,
   getIdByUser,
   deleteListing,
+  createListing
 };

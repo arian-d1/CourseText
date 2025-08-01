@@ -1,4 +1,7 @@
-import { useState } from "react";
+import { useState, useContext, useEffect } from "react";
+import { createListing } from "../api/listings";
+import authContext from "../context/AuthProvider";
+import { getIdByUser } from "../api/users";
 
 export default function CreateListingPage({ setCreateState }) {
   const [title, setTitle] = useState("");
@@ -6,9 +9,23 @@ export default function CreateListingPage({ setCreateState }) {
   const [price, setPrice] = useState("");
   const [code, setCode] = useState("");
   const [error, setError] = useState("");
+  const { auth, setAuth } = useContext(authContext);
+  const [user_id, setUser_id] = useState(null);
+
+  useEffect(() => {
+    try {
+      async function fetchUserId() {
+        const id = await getIdByUser(auth.username);
+        setUser_id(id);
+      }
+      fetchUserId();
+    } catch (error) {
+      console.error("Error fetching user ID:", error);
+    }
+  }, [auth]);
 
   const regexCode = /[A-Z]{2,4}-[0-9]{3}/;
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (!title || !description || !price || !code) {
@@ -24,7 +41,7 @@ export default function CreateListingPage({ setCreateState }) {
       return;
     }
     if (price.split(".").length == 0) {
-      price = "0." + price.split(".")[1];
+      setPrice((prev) => 0 + prev);
     }
 
     if (!regexCode.test(code)) {
@@ -32,12 +49,8 @@ export default function CreateListingPage({ setCreateState }) {
       return;
     }
 
-    console.log("Creating listing with:", {
-      title,
-      description,
-      price,
-      code,
-    });
+
+    await createListing({ title, description, price, code, user_id });
 
     setTitle("");
     setDescription("");

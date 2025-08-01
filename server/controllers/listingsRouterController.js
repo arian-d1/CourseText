@@ -33,10 +33,10 @@ async function getListingsBySearchTerm(req, res) {
   }
 }
 
-async function getListingsById(req, res) {
+async function getListingsByUserId(req, res) {
   try {
     const id = req.params.id;
-    const response = await listingsModel.getListingsById(id);
+    const response = await listingsModel.getListingsByUserId(id);
     res.json(response);
   } catch (error) {
     res.json({ error: error.message || "Error fetching listing by ID" });
@@ -53,10 +53,20 @@ async function deleteListing(req, res) {
   }
 }
 
+async function createListing(req, res) {
+  try {
+    await listingsModel.createListing(req.body);
+  } catch (error) {
+    res.json({ error: error.message || "Error creating listing" });
+  }
+}
+    
+
 module.exports = {
   getListings,
   getListingsByCourseCode,
   getListingsBySearchTerm,
-  getListingsById,
+  getListingsByUserId,
   deleteListing,
+  createListing
 };

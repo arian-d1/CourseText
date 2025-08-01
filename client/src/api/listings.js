@@ -48,6 +48,14 @@ async function deleteListing(id) {
   }
 }
 
+async function createListing(listingData) {
+  try {
+    await axios.post("/listings", listingData);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
 export {
   getAllListings,
   getListingsByCourseCode,
@@ -55,4 +63,5 @@ export {
   getUserNameByID,
   getListingsById,
   deleteListing,
+  createListing,
 };
