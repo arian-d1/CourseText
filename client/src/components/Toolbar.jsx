@@ -1,5 +1,5 @@
 import SearchBar from "./SearchBar";
-import CourseCodeDropdown from "./CourseCodeDropdown";
+import { useState } from "react";
 
 export default function Toolbar({
   setCourseCode,
@@ -8,6 +8,12 @@ export default function Toolbar({
   error,
   setError,
 }) {
+    const [searchOption, setSearchOption] = useState("title");
+
+    const handleSelect = (e) => {
+        setSearchOption(e.target.value);
+    }
+
   return (
     <div className="w-full flex flex-col gap-4 ">
       <SearchBar
@@ -16,14 +22,20 @@ export default function Toolbar({
         setCourseCode={setCourseCode}
         error={error}
         setError={setError}
+        searchOption={searchOption}
       />
-      <CourseCodeDropdown
-        courseCodes={["", "CS101", "CS102", "CS103"]}
-        onSelect={(code) => {
-          setCourseCode(code);
-          setSearchTerm("");
-        }}
-      />
+      <div className="flex gap-4 w-full">
+        <form className="flex justify-between">
+            <div>
+                <input type="radio" name="searchOption" defaultChecked value="title" onClick={handleSelect}/>
+                <label>Search by title</label>
+            </div>
+            <div>
+                <input type="radio" name="searchOption" value="code" onClick={handleSelect}/>
+                <label>Search by course code</label>
+            </div>
+        </form>
+      </div>
     </div>
   );
 }
