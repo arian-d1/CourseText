@@ -10,7 +10,7 @@ export default function Listing({
   created_at,
   user_id,
   canDelete = false,
-  handleDelete = () => {} // Default to no-op if not provided
+  handleDelete = () => {}, // Default to no-op if not provided
 }) {
   // User_id will be used to get the username
 
@@ -31,20 +31,21 @@ export default function Listing({
   return (
     <div className="w-full aspect-[4/5] sm:aspect-[1] md:aspect-[3/5] lg:aspect-[4/5] bg-white shadow-lg rounded-xl p-4 flex flex-col justify-between hover:shadow-xl transition">
       <div>
-      <div>
-        <h2 className="text-lg font-semibold mb-1 truncate">{title}</h2>
-        <p className="text-sm text-gray-600 line-clamp-3 mb-2">{description}</p>
-        <p className="text-xs text-gray-500">{code}</p>
-      </div>
-      {canDelete ? 
-        <button
-          className="mt-2 px-3 py-1 text-xs rounded bg-red-500 text-white hover:bg-red-600"
-          onClick={() => handleDelete(id)}
-        >
-          Delete
-        </button>
-        : null}
-      
+        <div>
+          <h2 className="text-lg font-semibold mb-1 truncate">{title}</h2>
+          <p className="text-sm text-gray-600 line-clamp-3 mb-2">
+            {description}
+          </p>
+          <p className="text-xs text-gray-500">{code}</p>
+        </div>
+        {canDelete ? (
+          <button
+            className="mt-2 px-3 py-1 text-xs rounded bg-red-500 text-white hover:bg-red-600"
+            onClick={() => handleDelete(id)}
+          >
+            Delete
+          </button>
+        ) : null}
       </div>
 
       <div className="flex justify-between items-end">

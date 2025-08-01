@@ -9,4 +9,5 @@ export default function Home() {
     navigate("/about");
   }, [navigate]);
 
-  return }
+  return;
+}
