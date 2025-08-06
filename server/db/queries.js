@@ -102,5 +102,5 @@ module.exports = {
   deleteListing,
   createListing,
   getMessagesByReceiverId,
-  createMessage
+  createMessage,
 };

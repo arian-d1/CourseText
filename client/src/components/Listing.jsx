@@ -1,7 +1,8 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { getUserNameByID } from "../api/listings";
 import ContactUserButton from "./ContactUserButton";
 import ContactUser from "./ContactUser";
+import AuthContext from "../context/AuthProvider";
 
 export default function Listing({
   id,
@@ -18,6 +19,7 @@ export default function Listing({
 
   const [username, setUsername] = useState("Unknown");
   const [showUser, setShowUser] = useState(false);
+  const { auth } = useContext(AuthContext);
 
   useEffect(() => {
     async function getUserName() {
@@ -69,9 +71,9 @@ export default function Listing({
 
       {showUser && (
         <ContactUser
-          userId={user_id}
-          username={username}
           onClose={() => setShowUser(false)}
+          receiver_id={user_id}
+          receiver_username={username}
         />
       )}
     </div>

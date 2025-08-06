@@ -1,18 +1,50 @@
 import { useState } from "react";
 import AuthContext from "../context/AuthProvider";
 import { useContext } from "react";
+import { createMessage } from "../api/message";
+import { getIdByUser } from "../api/users";
+import { useEffect } from "react";
 
-export default function ContactUser({ userId, username, onClose }) {
+export default function ContactUser({
+  receiver_id,
+  receiver_username,
+  onClose,
+}) {
   const [message, setMessage] = useState("");
-const {auth, setAuth} = useContext(AuthContext);
+  const { auth, setAuth } = useContext(AuthContext);
+  const [sender_id, setSenderId] = useState(null);
+  const [error, setError] = useState("");
 
-  const handleSubmit = (e) => {
+  useEffect(() => {
+    async function fetchSenderId() {
+      try {
+        const id = await getIdByUser(auth.username);
+        setSenderId(id);
+      } catch (error) {
+        console.error("Error fetching sender ID:", error);
+      }
+    }
+    fetchSenderId();
+  }, [auth]);
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Handle sending message logic here
-    console.log("Message to", userId, username, "from", auth.username);
-    // Optionally clear and close
-    setMessage("");
-    onClose();
+
+    try {
+      await createMessage(sender_id, receiver_id, message);
+      setError("");
+      setMessage("");
+      onClose("");
+    } catch (err) {
+      if (err.status == 400) {
+        setError(err.response.data.errors[0].msg || "Invalid input");
+        console.log(error);
+      } else if (err.status == 500) {
+        setError(err.response.data.error || "Server error");
+      } else {
+        setError(err || "Invalid message");
+      }
+    }
   };
 
   return (
@@ -26,9 +58,12 @@ const {auth, setAuth} = useContext(AuthContext);
         </button>
 
         <h2 className="text-2xl font-semibold mb-4">
-          Contact <span className="text-blue-600">{username}</span>
+          Contact <span className="text-blue-600">{receiver_username}</span>
         </h2>
 
+        {error && (
+          <div className="text-sm/6 font-medium text-red-500">{error}</div>
+        )}
         <form onSubmit={handleSubmit} className="space-y-4">
           <textarea
             required

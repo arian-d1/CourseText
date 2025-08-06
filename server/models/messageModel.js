@@ -17,6 +17,6 @@ async function createMessage(senderId, receiverId, message) {
   } catch (error) {
     throw error;
   }
-}   
+}
 
 module.exports = { getMessagesByReceiverId, createMessage };

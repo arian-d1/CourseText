@@ -27,7 +27,11 @@ async function createMessage(req, res) {
     }
 
     const { sender_id, receiver_id, message } = req.body;
-    const response = await messageModel.createMessage(sender_id, receiver_id, message);
+    const response = await messageModel.createMessage(
+      sender_id,
+      receiver_id,
+      message,
+    );
     res.json({ success: true, message: response });
   } catch (error) {
     res.json({

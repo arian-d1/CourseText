@@ -20,7 +20,10 @@ export default function Header() {
         <HeaderButton url="/listings" imgName="library.svg" />
       </div>
       <div className="flex-1 flex justify-end gap-4">
-        <HeaderButton url={auth.state ? "/messages" : "/log-in"} imgName="message.svg" />
+        <HeaderButton
+          url={auth.state ? "/messages" : "/log-in"}
+          imgName="message.svg"
+        />
         <HeaderButton url="/log-in" imgName="user.svg" />
       </div>
     </div>

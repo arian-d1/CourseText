@@ -10,4 +10,18 @@ async function getMessagesByReceiverId(receiverId) {
   }
 }
 
-export { getMessagesByReceiverId };
+async function createMessage(sender_id, receiver_id, message) {
+  try {
+    const response = await axios.post("/messages/", {
+      sender_id,
+      receiver_id,
+      message,
+    });
+    return response;
+  } catch (error) {
+    console.error("Error creating message:", error);
+    throw error;
+  }
+}
+
+export { getMessagesByReceiverId, createMessage };
