@@ -31,7 +31,7 @@ CREATE TABLE IF NOT EXISTS messages (
     id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     sender_id INT,
     receiver_id INT,
-    content TEXT,
+    message TEXT,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (sender_id) REFERENCES users(id),
     FOREIGN KEY (receiver_id) REFERENCES users(id)
