@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import { getUserNameByID } from "../api/listings";
+import ContactUserButton from "./ContactUserButton";
+import ContactUser from "./ContactUser";
 
 export default function Listing({
   id,
@@ -15,6 +17,7 @@ export default function Listing({
   // User_id will be used to get the username
 
   const [username, setUsername] = useState("Unknown");
+  const [showUser, setShowUser] = useState(false);
 
   useEffect(() => {
     async function getUserName() {
@@ -48,15 +51,18 @@ export default function Listing({
       <p className="text-xs font-medium text-blue-600">{code}</p>
     </div>
 
-    <div className="flex justify-between items-end pt-2 border-t border-gray-100">
-      <div>
+    <div className="flex justify-between items-end border-t border-gray-100">
+      <div className="">
         <p className="text-md font-bold text-green-600">${price}</p>
-        <p className="text-xs text-gray-500">By {username}</p>
+        <div className="pt-1 text-xs text-gray-500">
+          {canDelete ? null : <ContactUserButton setShowUser={setShowUser}/>}
+          </div>
       </div>
       <p className="text-xs text-gray-400">
         {new Date(created_at).toLocaleDateString()}
       </p>
     </div>
+    {showUser ? <ContactUser userId={user_id} username={username} onClose={() => setShowUser(false)} /> : null }
   </div>
 );
 }
