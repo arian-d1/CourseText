@@ -2,6 +2,7 @@ import { useEffect, useContext, useState } from "react";
 import { getMessagesByReceiverId } from "../api/message";
 import AuthContext from "../context/AuthProvider";
 import { getIdByUser } from "../api/users";
+import  Message from "./Message";
 
 export default function MessageBoard() {
     
@@ -28,8 +29,7 @@ export default function MessageBoard() {
             try {
 
                 const fetchedMessages = await getMessagesByReceiverId(user_id);
-                console.log(fetchedMessages.data.messages);
-                setMessages(fetchedMessages);
+                setMessages(fetchedMessages.data.messages);
             } catch (error) {
                 console.error("Error fetching messages:", error);
             }
@@ -37,15 +37,21 @@ export default function MessageBoard() {
         fetchMessages();
     }, [user_id]);
 
-    useEffect(() => {
-        console.log("Messages updated:", messages);
-    }, [messages]);
+    const messageElements = messages.map((msg) => (
+        <Message
+            key={msg.id}
+            sender_id={msg.sender_id}
+            receiver_id={msg.receiver_id}
+            message={msg.message}
+        />
+    )); 
 
+    
     return (
         <div className="flex flex-col items-center justify-center h-screen bg-gray-100">
         <h1 className="text-2xl font-bold mb-4">Message Board</h1>
         <p className="text-gray-600">This feature is coming soon!</p>
-        {console.log(user_id) }
+        <div className="mt-6 w-full max-w-lg">{messageElements}</div>
         </div>
     );
     }
