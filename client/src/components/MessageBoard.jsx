@@ -48,10 +48,25 @@ export default function MessageBoard() {
 
     
     return (
-        <div className="flex flex-col items-center justify-center h-screen bg-gray-100">
-        <h1 className="text-2xl font-bold mb-4">Message Board</h1>
-        <p className="text-gray-600">This feature is coming soon!</p>
-        <div className="mt-6 w-full max-w-lg">{messageElements}</div>
-        </div>
-    );
-    }
+    <div className="min-h-screen bg-gray-50 py-10 px-4">
+      <div className="max-w-3xl mx-auto">
+        <h1 className="text-3xl font-semibold text-gray-800 mb-6">Your Messages</h1>
+
+        {messages.length === 0 ? (
+          <p className="text-gray-500">You don’t have any messages yet.</p>
+        ) : (
+          <div className="space-y-4">
+            {messages.map((msg) => (
+              <Message
+                key={msg.id}
+                sender_id={msg.sender_id}
+                receiver_id={msg.receiver_id}
+                message={msg.message}
+              />
+            ))}
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
