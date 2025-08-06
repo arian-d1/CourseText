@@ -29,34 +29,34 @@ export default function Listing({
   }, [user_id]);
 
   return (
-    <div className="w-full aspect-[4/5] sm:aspect-[5/6] md:aspect-[4/5] lg:aspect-[3/4] bg-white shadow-lg rounded-xl p-4 flex flex-col justify-between hover:shadow-xl transition">
-      <div>
-        <div>
-          <h2 className="text-lg font-semibold mb-1 truncate">{title}</h2>
-          <p className="text-sm text-gray-600 line-clamp-3 mb-2">
-            {description}
-          </p>
-          <p className="text-xs text-gray-500">{code}</p>
-        </div>
-        {canDelete ? (
-          <button
-            className="mt-2 px-3 py-1 text-xs rounded bg-red-500 text-white hover:bg-red-600"
-            onClick={() => handleDelete(id)}
-          >
-            Delete
-          </button>
-        ) : null}
-      </div>
-
-      <div className="flex justify-between items-end">
-        <div>
-          <p className="text-md font-bold text-green-600">${price}</p>
-          <p className="text-xs text-gray-500">By {username}</p>
-        </div>
-        <p className="text-xs text-gray-400">
-          {new Date(created_at).toLocaleDateString()}
-        </p>
-      </div>
+  <div className="w-full bg-white border border-gray-200 rounded-lg shadow-sm hover:shadow-md transition p-4 flex flex-col justify-between space-y-4">
+    
+    <div className="flex justify-between items-start">
+      <h2 className="text-xl font-semibold text-gray-800 truncate">{title}</h2>
+      {canDelete && (
+        <button
+          onClick={() => handleDelete(id)}
+          className="ml-4 px-3 py-1 text-xs font-medium rounded bg-red-500 text-white hover:bg-red-600 shrink-0"
+        >
+          Delete
+        </button>
+      )}
     </div>
-  );
+  
+    <div className="space-y-1">
+      <p className="text-sm text-gray-600 line-clamp-3">{description}</p>
+      <p className="text-xs font-medium text-blue-600">{code}</p>
+    </div>
+
+    <div className="flex justify-between items-end pt-2 border-t border-gray-100">
+      <div>
+        <p className="text-md font-bold text-green-600">${price}</p>
+        <p className="text-xs text-gray-500">By {username}</p>
+      </div>
+      <p className="text-xs text-gray-400">
+        {new Date(created_at).toLocaleDateString()}
+      </p>
+    </div>
+  </div>
+);
 }
