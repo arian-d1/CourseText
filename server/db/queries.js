@@ -83,6 +83,13 @@ async function getMessagesByReceiverId(receiverId) {
   return result.rows;
 }
 
+async function createMessage(senderId, receiverId, message) {
+  await db.query(
+    "INSERT INTO messages (sender_id, receiver_id, message) VALUES ($1, $2, $3)",
+    [senderId, receiverId, message],
+  );
+}
+
 module.exports = {
   containsUser,
   insertUser,
@@ -95,4 +102,5 @@ module.exports = {
   deleteListing,
   createListing,
   getMessagesByReceiverId,
+  createMessage
 };

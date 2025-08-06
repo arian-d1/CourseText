@@ -6,6 +6,7 @@ import About from "./components/About";
 import Home from "./components/Home";
 import Header from "./components/Header";
 import ListingSection from "./components/ListingSection";
+import MessageBoard from "./components/MessageBoard";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="/sign-up" element={<SignUp />} />
         <Route path="/log-in" element={<Login />} />
+        <Route path="/messages" element={<MessageBoard />} />
       </Routes>
     </AuthProvider>
   );

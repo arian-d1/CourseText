@@ -22,4 +22,20 @@ messageRouter.get(
   messageRouterController.getMessagesByReceiverId,
 );
 
+messageRouter.post(
+  "/",
+  [
+    body("sender_id")
+      .notEmpty()
+      .isNumeric()
+      .withMessage("Sender ID must be a number"),
+    body("receiver_id")
+      .notEmpty()
+      .isNumeric()
+      .withMessage("Receiver ID must be a number"),
+  ],
+  validationRules,
+  messageRouterController.createMessage,
+);
+
 module.exports = messageRouter;

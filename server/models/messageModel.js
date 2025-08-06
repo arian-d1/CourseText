@@ -10,4 +10,13 @@ async function getMessagesByReceiverId(receiverId) {
   }
 }
 
-module.exports = { getMessagesByReceiverId };
+async function createMessage(senderId, receiverId, message) {
+  try {
+    const response = await db.createMessage(senderId, receiverId, message);
+    return response;
+  } catch (error) {
+    throw error;
+  }
+}   
+
+module.exports = { getMessagesByReceiverId, createMessage };

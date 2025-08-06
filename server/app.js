@@ -13,6 +13,7 @@ const loginRouter = require("./routes/loginRouter");
 const signUpRouter = require("./routes/signUpRouter");
 const listingsRouter = require("./routes/listingsRouter");
 const userRouter = require("./routes/userRouter");
+const messageRouter = require("./routes/messageRouter");
 
 const app = express();
 
@@ -47,6 +48,7 @@ app.use("/api/log-in", loginRouter);
 app.use("/api/sign-up", signUpRouter);
 app.use("/api/listings", listingsRouter);
 app.use("/api/users", userRouter);
+app.use("/api/messages", messageRouter);
 
 const PORT = process.env.PORT || 3000;
 

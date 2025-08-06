@@ -1,12 +1,15 @@
 import { useState } from "react";
+import AuthContext from "../context/AuthProvider";
+import { useContext } from "react";
 
 export default function ContactUser({ userId, username, onClose }) {
   const [message, setMessage] = useState("");
+const {auth, setAuth} = useContext(AuthContext);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     // Handle sending message logic here
-    console.log("Message to", userId, ":", message);
+    console.log("Message to", userId, username, "from", auth.username);
     // Optionally clear and close
     setMessage("");
     onClose();
