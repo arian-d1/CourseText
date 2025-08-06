@@ -68,7 +68,7 @@ export default function ContactUser({
           <textarea
             required
             className="w-full h-32 p-3 border border-gray-300 rounded resize-none focus:outline-none focus:ring-2 focus:ring-blue-500"
-            placeholder="Write your message here..."
+            placeholder="Write your message and contact information here..."
             value={message}
             onChange={(e) => setMessage(e.target.value)}
           />
