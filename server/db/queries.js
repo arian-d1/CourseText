@@ -75,6 +75,14 @@ async function createListing(title, description, price, code, user_id) {
   );
 }
 
+async function getMessagesByReceiverId(receiverId) {
+  const result = await db.query(
+    "SELECT * FROM messages WHERE receiver_id = $1",
+    [receiverId],
+  );
+  return result.rows;
+}
+
 module.exports = {
   containsUser,
   insertUser,
@@ -86,4 +94,5 @@ module.exports = {
   getIdByUser,
   deleteListing,
   createListing,
+  getMessagesByReceiverId,
 };

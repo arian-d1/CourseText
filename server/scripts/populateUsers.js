@@ -27,6 +27,15 @@ CREATE TABLE IF NOT EXISTS listings (
    FOREIGN KEY (user_id) REFERENCES users(id)
 );
 
+CREATE TABLE IF NOT EXISTS messages (
+    id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    sender_id INT,
+    receiver_id INT,
+    content TEXT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (sender_id) REFERENCES users(id),
+    FOREIGN KEY (receiver_id) REFERENCES users(id)
+);
 
 INSERT INTO listings (title, description, price, code, user_id) VALUES ('Title 1', 'desc 1', 1.25, 'CPSC-101', 1) ON CONFLICT DO NOTHING;
 INSERT INTO listings (title, description, price, code, user_id) VALUES ('Title 2', 'desc 2', 2.25, 'CPSC-201', 1) ON CONFLICT DO NOTHING;
