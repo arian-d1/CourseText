@@ -61,7 +61,7 @@ export default function UserDashboard() {
 
         <div className="mt-auto sticky bottom-4 flex flex-col">
           <button
-            className="bg-blue-500 hover:bg-blue-500/75 rounded-md p-2 mt-4"
+            className="bg-blue-500 hover:bg-blue-500/75 rounded-md p-2 mt-4 text-white"
             onClick={(e) => {
               setCreateState(true);
             }}
