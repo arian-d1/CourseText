@@ -11,11 +11,14 @@ export default function Toolbar({
 
   const handleSelect = (e) => {
     setSearchOption(e.target.value);
+    setSearchTerm("")
+    setCourseCode("")
   };
 
   return (
     <div className="w-full flex flex-col gap-4 ">
       <SearchBar
+        key={searchOption} // This will force reset on toggle
         setSearchTerm={setSearchTerm}
         setCourseCode={setCourseCode}
         error={error}

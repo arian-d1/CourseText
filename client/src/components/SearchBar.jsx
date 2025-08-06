@@ -68,10 +68,8 @@ export default function SearchBar({
           className="w-full outline-none bg-transparent text-gray-600 text-md"
           onChange={(e) => {
             if (searchOption == "code") {
-              setSearchTerm("");
               setCourseCode(e.target.value);
             } else if (searchOption == "title") {
-              setCourseCode("");
               setSearchTerm(e.target.value);
             }
           }}
