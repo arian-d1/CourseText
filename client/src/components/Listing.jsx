@@ -35,34 +35,43 @@ export default function Listing({
   <div className="w-full bg-white border border-gray-200 rounded-lg shadow-sm hover:shadow-md transition p-4 flex flex-col justify-between space-y-4">
     
     <div className="flex justify-between items-start">
-      <h2 className="text-xl font-semibold text-gray-800 truncate">{title}</h2>
+      <div className="flex-1 pr-4">
+        <h2 className="text-xl font-semibold text-gray-800 truncate">{title}</h2>
+        <p className="text-sm text-gray-600 mt-1 line-clamp-3">{description}</p>
+        <p className="text-xs font-medium text-blue-600 mt-1">{code}</p>
+      </div>
       {canDelete && (
         <button
           onClick={() => handleDelete(id)}
-          className="ml-4 px-3 py-1 text-xs font-medium rounded bg-red-500 text-white hover:bg-red-600 shrink-0"
+          className="px-3 py-1 text-xs font-medium rounded bg-red-500 text-white hover:bg-red-600 shrink-0"
         >
           Delete
         </button>
       )}
     </div>
-  
-    <div className="space-y-1">
-      <p className="text-sm text-gray-600 line-clamp-3">{description}</p>
-      <p className="text-xs font-medium text-blue-600">{code}</p>
-    </div>
 
-    <div className="flex justify-between items-end border-t border-gray-100">
-      <div className="">
+    <div className="flex justify-between items-end border-t border-gray-100 pt-2">
+      <div>
         <p className="text-md font-bold text-green-600">${price}</p>
-        <div className="pt-1 text-xs text-gray-500">
-          {canDelete ? null : <ContactUserButton setShowUser={setShowUser}/>}
+        {!canDelete && (
+          <div className="pt-1 text-xs text-gray-500">
+            <ContactUserButton setShowUser={setShowUser} />
           </div>
+        )}
       </div>
       <p className="text-xs text-gray-400">
         {new Date(created_at).toLocaleDateString()}
       </p>
     </div>
-    {showUser ? <ContactUser userId={user_id} username={username} onClose={() => setShowUser(false)} /> : null }
+
+
+    {showUser && (
+      <ContactUser
+        userId={user_id}
+        username={username}
+        onClose={() => setShowUser(false)}
+      />
+    )}
   </div>
 );
 }
