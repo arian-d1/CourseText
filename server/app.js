@@ -41,7 +41,7 @@ app.use(express.urlencoded({ extended: true }));
 
 // ROUTERS
 app.get("/", (req, res) => {
-  res.redirect("https://course-text-1b7r86elt-arian-d1s-projects.vercel.app/sign-up");
+  res.json({message: "message"})
 });
 
 app.use("/api/log-in", loginRouter);
