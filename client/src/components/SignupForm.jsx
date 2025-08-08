@@ -37,7 +37,6 @@ export default function SignupForm() {
           },
         },
       );
-      console.log("Login response:", response);
     } catch (err) {
       if (err.status == 409) {
         setError(err.response.data.error || "Username already in use");
