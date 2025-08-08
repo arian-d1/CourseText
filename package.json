@@ -1,12 +1,7 @@
 {
-
-  "devDependencies": {
-    "turbo": "^2.5.5"
-  },
  "packageManager": "npm@8.5.0",
  "workspaces": [
     "client",
     "server"
   ]
-
 }
