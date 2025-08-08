@@ -11,8 +11,8 @@ export default function Toolbar({
 
   const handleSelect = (e) => {
     setSearchOption(e.target.value);
-    setSearchTerm("")
-    setCourseCode("")
+    setSearchTerm("");
+    setCourseCode("");
   };
 
   return (

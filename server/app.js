@@ -30,7 +30,10 @@ app.use(
     resave: false,
     saveUninitialized: false,
     cookie: {
-      maxAge: 15 * 60 * 1000, // 15 minutes
+      secure: true,        // required on HTTPS
+      sameSite: "none",    // required for cross-site cookies
+      httpOnly: true,
+      maxAge: 1000 * 60 * 60 * 24 * 7 // 1 week
     },
   }),
 );

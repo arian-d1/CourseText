@@ -2,7 +2,7 @@ import axios from "axios";
 
 export async function checkAuth() {
   try {
-    const response = await axios.get("https://coursetext.onrender.com/api/log-in", {
+    const response = await axios.get("/log-in", {
       withCredentials: true,
     });
 
