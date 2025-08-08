@@ -2,10 +2,10 @@ import HeaderButton from "./HeaderButton";
 import { useContext } from "react";
 import AuthContext from "../context/AuthProvider";
 
-import CourseText from "../assets/CourseText.svg"
-import LibraryIcon from "../assets/library.svg"
-import MessageIcon from "../assets/message.svg"
-import UserIcon from "../assets/user.svg"
+import CourseText from "../assets/CourseText.svg";
+import LibraryIcon from "../assets/library.svg";
+import MessageIcon from "../assets/message.svg";
+import UserIcon from "../assets/user.svg";
 
 export default function Header() {
   const { auth, setAuth } = useContext(AuthContext);
@@ -30,7 +30,7 @@ export default function Header() {
           src={MessageIcon}
           alt={"Messages"}
         />
-        <HeaderButton url="/log-in" src={UserIcon} alt={"Profile"}/>
+        <HeaderButton url="/log-in" src={UserIcon} alt={"Profile"} />
       </div>
     </div>
   );

@@ -41,6 +41,7 @@ export default function LoginForm() {
           },
         },
       );
+      console.log(response);
 
       if (response.data.success == true) {
         setAuth({ state: true, username: username });

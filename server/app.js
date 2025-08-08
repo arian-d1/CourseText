@@ -6,7 +6,9 @@ const cors = require("cors");
 
 // AUTH IMPORTS
 const session = require("express-session");
+const pgSession = require("connect-pg-simple")(session);
 const passport = require("./config/passport");
+const db = require("./db/pool");
 
 // ROUTER IMPORTS
 const loginRouter = require("./routes/loginRouter");
@@ -29,22 +31,27 @@ app.use(
     secret: process.env.SECRET || "secret",
     resave: false,
     saveUninitialized: false,
+    store: new pgSession({
+      pool: db,
+      tableName: "session",
+    }),
     cookie: {
-      secure: true,        // required on HTTPS
-      sameSite: "none",    // required for cross-site cookies
+      secure: true, // required on HTTPS
+      sameSite: "none", // required for cross-site cookies
       httpOnly: true,
-      maxAge: 1000 * 60 * 60 * 24 * 7 // 1 week
+      maxAge: 1000 * 60 * 60 * 24 * 7, // 1 week
     },
   }),
 );
 
+app.use(passport.initialize());
 app.use(passport.session());
 app.use(express.json()); // will parse json in to req.body
 app.use(express.urlencoded({ extended: true }));
 
 // ROUTERS
 app.get("/", (req, res) => {
-  res.json({message: "message"})
+  res.json({ message: "message" });
 });
 
 app.use("/api/log-in", loginRouter);
