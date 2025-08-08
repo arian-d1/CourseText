@@ -38,7 +38,6 @@ app.use(
     cookie: {
       secure: true, // required on HTTPS
       sameSite: "none", // required for cross-site cookies
-      httpOnly: true,
       maxAge: 1000 * 60 * 60 * 24 * 7, // 1 week
     },
   }),
