@@ -28,17 +28,20 @@ app.use(cors(corsOptions));
 
 app.use(
   session({
+    name: "connect.sid",
     secret: "secret",
     resave: false,
     saveUninitialized: false,
     store: new pgSession({
       pool: db,
       tableName: "session",
+      createTableIfMissing: true,
     }),
     cookie: {
-      secure: true, // required on HTTPS
-      sameSite: "none", // required for cross-site cookies
-      maxAge: 1000 * 60 * 60 * 24 * 7, // 1 week
+      secure: process.env.NODE_ENV === "production", // true for HTTPS production
+      httpOnly: true,
+      sameSite: process.env.NODE_ENV === "production" ? "none" : "lax", // none for cross-origin production
+      maxAge: 1000 * 60 * 60 * 24 * 7,
     },
   }),
 );
@@ -59,12 +62,12 @@ app.use("/api/listings", listingsRouter);
 app.use("/api/users", userRouter);
 app.use("/api/messages", messageRouter);
 
-app.get('/api/auth-test', (req, res) => {
+app.get("/api/auth-test", (req, res) => {
   res.json({
     sessionID: req.sessionID,
     isAuthenticated: req.isAuthenticated(),
     user: req.user,
-    session: req.session
+    session: req.session,
   });
 });
 
@@ -72,4 +75,7 @@ const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, () => {
   console.log(`Server listening @ PORT ${PORT}`);
+  console.log(
+    `Environment: ${process.env.NODE_ENV === "production" ? "PRODUCTION" : "DEVELOPMENT"}`,
+  );
 });
