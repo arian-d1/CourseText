@@ -46,6 +46,9 @@ app.use(
   }),
 );
 
+app.set('trust proxy', 1); // Set to 1 for single proxy, or true for multiple
+
+
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(express.json()); // will parse json in to req.body
