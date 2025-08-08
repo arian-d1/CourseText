@@ -5,6 +5,7 @@ export async function checkAuth() {
     const response = await axios.get("/log-in", {
       withCredentials: true,
     });
+    
     return response;
   } catch (error) {
     console.error("checkAuth error", error);

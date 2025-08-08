@@ -28,7 +28,7 @@ app.use(cors(corsOptions));
 
 app.use(
   session({
-    secret: process.env.SECRET || "secret",
+    secret: "secret",
     resave: false,
     saveUninitialized: false,
     store: new pgSession({
@@ -50,7 +50,7 @@ app.use(express.urlencoded({ extended: true }));
 
 // ROUTERS
 app.get("/", (req, res) => {
-  res.json({ message: "message" });
+  res.redirect("/sign-up");
 });
 
 app.use("/api/log-in", loginRouter);
@@ -58,6 +58,15 @@ app.use("/api/sign-up", signUpRouter);
 app.use("/api/listings", listingsRouter);
 app.use("/api/users", userRouter);
 app.use("/api/messages", messageRouter);
+
+app.get('/api/auth-test', (req, res) => {
+  res.json({
+    sessionID: req.sessionID,
+    isAuthenticated: req.isAuthenticated(),
+    user: req.user,
+    session: req.session
+  });
+});
 
 const PORT = process.env.PORT || 3000;
 

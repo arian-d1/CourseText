@@ -11,7 +11,6 @@ export const AuthProvider = ({ children }) => {
   useEffect(() => {
     const loadAuth = async () => {
       const res = await checkAuth();
-      console.log(res.data);
       setAuth({
         state: res.data.state,
         username: res.data.username,
