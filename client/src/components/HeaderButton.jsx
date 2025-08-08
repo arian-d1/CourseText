@@ -1,8 +1,7 @@
-export default function HeaderButton({ url, imgName }) {
-  const imgSrc = "src/public/" + imgName;
+export default function HeaderButton({ url, alt, src}) {
   return (
     <a href={url} className=" hover:opacity-50 transition-opacity duration-300">
-      <img src={imgSrc} alt={imgName} className="max-w-8"></img>
+      <img src={src} alt={alt} className="max-w-8"></img>
     </a>
   );
 }
