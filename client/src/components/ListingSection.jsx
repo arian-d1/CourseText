@@ -15,7 +15,7 @@ export default function ListingSection() {
   const [error, setError] = useState("");
 
   useEffect(() => {
-    async function getListingsFromApi() {
+    async function getListingsFromApi() { 
       try {
         if (courseCode !== "") {
           // Get course by code
@@ -62,7 +62,7 @@ export default function ListingSection() {
 
   return (
     <div className="flex h-screen">
-      <div className=" flex min-w-sm bg-gray-200 p-4 shadow-md ">
+      <div className=" flex flex-col min-w-sm bg-gray-200 p-4 shadow-md ">
         <Toolbar
           setCourseCode={setCourseCode}
           setSearchTerm={setSearchTerm}
@@ -71,8 +71,10 @@ export default function ListingSection() {
           setError={setError}
         />
       </div>
-      <div className="w-full grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-4 overflow-auto">
+      <div className="flex flex-col w-full">
+        <div className="w-full grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-4 overflow-auto">
         {listingElements}
+        </div>
       </div>
     </div>
   );
