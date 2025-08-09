@@ -29,7 +29,7 @@ app.use(cors(corsOptions));
 app.use(
   session({
     name: "connect.sid",
-    secret: "secret",
+    secret: process.env.SECRET,
     resave: false,
     saveUninitialized: false,
     store: new pgSession({
