@@ -13,10 +13,13 @@ export default function ListingSection() {
   const [searchTerm, setSearchTerm] = useState("");
   const [courseCode, setCourseCode] = useState("");
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false)
 
   useEffect(() => {
     async function getListingsFromApi() {
       try {
+        setLoading(true);
+
         if (courseCode !== "") {
           // Get course by code
           const response = await getListingsByCourseCode(courseCode);
@@ -38,6 +41,8 @@ export default function ListingSection() {
         } else {
           setError("Search failed. Please try again.");
         }
+      } finally {
+        setLoading(false);
       }
     }
 
@@ -73,7 +78,7 @@ export default function ListingSection() {
       </div>
       <div className="flex flex-col w-full overflow-auto">
         <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-4">
-          {listingElements}
+          {loading ?  <p>Loading listings...</p> : listingElements} 
         </div>
       </div>
     </div>
