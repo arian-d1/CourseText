@@ -57,8 +57,8 @@ export default function About() {
               Browse Listings
             </a>{" "}
             or{" "}
-            <a href="/log-in" className="text-blue-600 hover:underline">
-              Log In
+            <a href="/sign-up" className="text-blue-600 hover:underline">
+              Sign up
             </a>{" "}
             to create your own listings today.
           </p>

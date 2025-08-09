@@ -14,7 +14,7 @@ export default function UserDashboard() {
   useEffect(() => {
     async function fetchListings() {
       try {
-        setLoading(true)
+        setLoading(true);
         const id = await getIdByUser(auth.username);
         const response = await getListingsById(id);
         setListings(response.data);
@@ -97,7 +97,7 @@ export default function UserDashboard() {
           </p>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-4 overflow-y-auto">
-          {loading ?  <p>Loading listings...</p> : listingElements} 
+          {loading ? <p>Loading listings...</p> : listingElements}
         </div>
       </div>
 

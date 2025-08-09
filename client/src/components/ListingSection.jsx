@@ -13,7 +13,7 @@ export default function ListingSection() {
   const [searchTerm, setSearchTerm] = useState("");
   const [courseCode, setCourseCode] = useState("");
   const [error, setError] = useState("");
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     async function getListingsFromApi() {
@@ -78,7 +78,7 @@ export default function ListingSection() {
       </div>
       <div className="flex flex-col w-full overflow-auto">
         <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-4">
-          {loading ?  <p>Loading listings...</p> : listingElements} 
+          {loading ? <p>Loading listings...</p> : listingElements}
         </div>
       </div>
     </div>
