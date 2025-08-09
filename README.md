@@ -9,8 +9,8 @@ This project is built to solve a common problem for university students—findin
 - **User Authentication**: Secure sign-up and login with session management.
 - **Course-Based Listings**: Users can post and browse listings tied to specific UBC course codes (e.g. CPSC 221).
 - **Search and Filtering**: Listings can be filtered by title or course code.
-- **Listing Management**: Authenticated users can create, edit, and delete their own listings.
-- **Responsive Design**: Fully usable across desktop.
+- **Listing Management**: Authenticated users can create and delete their own listings.
+- **Responsive Design**: Fully usable across desktop and mobile.
 
 ## Tech Stack
 
