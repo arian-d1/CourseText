@@ -34,7 +34,7 @@ export default function Listing({
   }, [user_id]);
 
   return (
-    <div className="w-full bg-white border border-gray-200 rounded-lg shadow-sm hover:shadow-md transition p-4 flex flex-col justify-between space-y-4">
+    <div className="min-w-[190px] w-full bg-white border border-gray-200 rounded-lg shadow-sm hover:shadow-md transition p-4 flex flex-col justify-between space-y-4">
       <div className="flex justify-between items-start">
         <div className="flex-1 pr-4">
           <h2 className="text-xl font-semibold text-gray-800 truncate">
