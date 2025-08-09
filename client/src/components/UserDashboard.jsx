@@ -23,7 +23,7 @@ export default function UserDashboard() {
     }
 
     fetchListings();
-  }, [auth]);
+  }, [auth, createState]);
 
   async function handleDelete(id) {
     try {
