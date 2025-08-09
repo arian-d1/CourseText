@@ -27,6 +27,11 @@ This project is built to solve a common problem for university students—findin
 - **Express-Validator** for server-side input validation
 - **dotenv** for environment config
 
+### Deployment
+- **Vercel** for the frontend
+- **Render** for the backend
+- **Neon** for the postgreSQL database
+
 ## Why I Built This
 
 As a UBC student, I noticed that course materials were often scattered across various platforms or shared informally through chat groups. CourseText provides a single, organized place for students to exchange resources safely and efficiently. It also gave me the opportunity to apply full-stack development skills in a real-world context with a focus on clean design and solid backend architecture.
