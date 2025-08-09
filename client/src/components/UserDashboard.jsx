@@ -53,13 +53,15 @@ export default function UserDashboard() {
   });
 
   return (
-    <div className="flex h-screen">
-      <div className=" flex flex-col min-w-3xs bg-gray-200 p-4 shadow-md">
+    <div className="flex flex-col md:flex-row h-screen">
+      {/* Toolbar */}
+      <div className="flex flex-col w-full md:w-64 bg-gray-200 p-4 shadow-md">
         <p className="text-xl font-semibold text-gray-700 mb-4">
           Welcome, <span className="text-blue-600">{auth.username}</span>
         </p>
 
-        <div className="mt-auto sticky bottom-4 flex flex-col">
+        {/* Buttons only stick on screens >= med*/}
+        <div className="mt-auto md:sticky bottom-4 flex flex-col">
           <button
             className="bg-blue-500 hover:bg-blue-500/75 rounded-md p-2 mt-4 text-white"
             onClick={(e) => {
@@ -81,6 +83,7 @@ export default function UserDashboard() {
         </div>
       </div>
 
+      {/* Listings */}
       <div className="flex flex-col w-full">
         <div className="w-full border-b border-gray-300 p-4 bg-white shadow-sm">
           <h2 className="text-2xl font-semibold text-gray-800">
@@ -90,13 +93,15 @@ export default function UserDashboard() {
             Manage and update your active listings below.
           </p>
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-4 overflow-auto">
+        <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-4 overflow-y-auto">
           {listingElements}
         </div>
       </div>
+
+      {/* New Listing Modal */}
       {createState && (
-        <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 ">
-          <div className="bg-white rounded-xl shadow-xl p-6 max-w-xl w-full">
+        <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4">
+          <div className="bg-white rounded-xl shadow-xl p-4 max-w-xl w-full">
             <CreateListingPage setCreateState={setCreateState} />
           </div>
         </div>
