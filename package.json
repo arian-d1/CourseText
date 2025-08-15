@@ -1,7 +1,5 @@
 {
- "packageManager": "npm@8.5.0",
- "workspaces": [
-    "client",
-    "server"
-  ]
+  "name": "CourseText",
+  "version": "1.0.0",
+  "private": true
 }
